@@ -153,7 +153,7 @@ define(
 				console.log("all sounds loaded, snds.length = " + snds.length);
 				msgbox.value="all sounds loaded";
 				m_soundsLoaded=true;
-				snds[sm.DRONE].setParam("Number of Generators", 1);
+				//snds[sm.DRONE].setParam("Number of Generators", 1);
 				i_cb();
 
 			}); // sb will be an array of sounds in the order specified by sndList
