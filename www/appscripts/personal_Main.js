@@ -15,9 +15,9 @@ require.config({
 	}
 });
 require(
-	["require",  "../utils/comm", "../utils/utils",  "config", "personalConfig", "personalDisplay", "player_personal",  "polyfill"],
+	["require",  "voiceActivation", "../utils/comm", "../utils/utils",  "config", "personalConfig", "personalDisplay", "player_personal",  "polyfill"],
 
-	function (require,  commFactory, utils,  config, personalConfig, personalDisplay,  player) {
+	function (require,  va, commFactory, utils,  config, personalConfig, personalDisplay,  player) {
 
 		
 
@@ -46,7 +46,12 @@ require(
 					var foo = pd.getColor();
 					comm.sendJSONmsg("colorID", [foo]);
 
-
+					va.init(
+						player.getAudioContext(), function(){
+						player.trigger();
+						}
+					);	
+					
 
 					//++++++++++++++++++++++++++++++++++++
 					var da = document.getElementById("wrap");
@@ -92,7 +97,7 @@ require(
  					//++++++++++++++++++++++++++++++++++++++++++
 
 				} else{
-					alert("myRoom is undefined .... Not Subscribeding")
+					alert("myRoom is undefined .... Not Subscribing")
 				}
 
 				timerLoop(performance.now());  // fire it up

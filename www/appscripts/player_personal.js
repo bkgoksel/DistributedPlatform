@@ -13,7 +13,8 @@ define(
 			//"../slorksounds/MyRisset",			
 			"jsaSound/jsaModels/Leonardo/jsaDistributedDrone2Leonardo",
 			"jsaSound/jsaModels/Ame/RandomBirdSample",
-			"jsaSound/jsaModels/RainLoop"
+			"jsaSound/jsaModels/RainLoop",
+			"../slorksounds/MyGrannySwing"
 			//"jsaSound/jsaModels/jsaFMnative2",
 			//"jsaSound/jsaModels/SoD/Dragster",
 			//"jsaSound/jsaModels/peeperSyllable",
@@ -27,12 +28,14 @@ define(
 			"DRONE" : 1,
 			"BIRDS" : 2,
 			"rainloop" : 3,
+			"GRANNYSWING" : 4
 		}
 
 		// convenient movement designation 
 		var mvt = {
 			"BIRDS" : 0,
-			"DRONE" : 1
+			"DRONE" : 1,
+			"GRANNYSWING" : 2
 		}
 
 		var m_playingP=false;
@@ -45,6 +48,22 @@ define(
 
 		m_groupGain=0;
 		m_personalGain=1;
+
+		IPlayer.getAudioContext=function(){
+			return snds[0].getAudioContext();
+		}
+
+		// trigger whatever process are appropriate for the current movement
+		IPlayer.trigger=function(info=null){
+			if (m_currentMvt==mvt["DRONE"]){
+				snds[sm.DRONE].setParamNorm("Gain", .5);
+				snds[sm.DRONE].setParamNorm("play", 1);
+				setTimeout(function(){
+					snds[sm.DRONE].setParamNorm("play", 0);
+				}, 1200)
+			}
+
+		}
 
 
 		IPlayer.setGain=function(nval){
@@ -139,6 +158,48 @@ define(
 			snds[sm.BIRDS].setParam("play", 0);
 
 		}
+
+		//--------------
+		var grannyPlayingP=false;
+		var grannyInterval=10000;
+		var grannyTimer;
+
+
+		IPlayer.setDensity=function(nval){
+			grannyInterval=1000*Math.pow(2,2+3*nval); //[4secs, 32saecs]
+			if (grannysPlayingP) {
+				grannyTimer && clearTimeout(grannyTimer);
+				grannyTimer=setTimeout(grannyTrigger, Math.max(2000, grannyInterval*Math.random()));
+			}
+		}
+
+		IPlayer.playgrannys=function(){
+			console.log("play granny");
+			var foot;
+			grannysPlayingP=true;
+			grannyTimer && clearTimeout(grannyTimer);
+			foot = Math.max(2000, grannyInterval*Math.random());
+			grannyTimer=setTimeout(grannyTrigger, foot);
+			console.log('granny set to play in ms from now: ' + foot);
+		}
+
+		var grannyTrigger = function(){
+			if (grannysPlayingP) {
+				console.log("trigger granny");
+				snds[sm.GRANNYSWING].setParam("play", 1);
+				grannyTimer && clearTimeout(grannyTimer); // don't let timers overlap (can happen with these random intervals)
+				grannyTimer=setTimeout(grannyTrigger, Math.max(2000, grannyInterval*Math.random()));
+			}		
+		}
+
+		IPlayer.stopgrannys=function(){
+			console.log("stop granny");
+			grannysPlayingP=false;
+			snds[sm.GRANNYSWING].setParam("play", 0);
+
+		}
+
+
 			
 		var snds;
 		var k_numSnds=0;
@@ -154,6 +215,7 @@ define(
 				msgbox.value="all sounds loaded";
 				m_soundsLoaded=true;
 				//snds[sm.DRONE].setParam("Number of Generators", 1);
+				IPlayer.setGain(0);
 				i_cb();
 
 			}); // sb will be an array of sounds in the order specified by sndList
@@ -172,6 +234,7 @@ define(
 				snds[i] && snds[i].release();
 			}
 			IPlayer.stopBirds();
+			IPlayer.stopgrannys();
 			m_playingP=false;
 		}
 
@@ -200,12 +263,18 @@ define(
 			switch(i_mvt){
 				case mvt.BIRDS:
 					IPlayer.playBirds();
-					break
+					break;
+
+				case mvt.GRANNYSWING :
+					IPlayer.playgrannys();
+					snds[sm.GRANNYSWING].setParamNorm("Pitch", .2+.5*Math.random());
+
+					break;
 
 				case mvt.DRONE:
 
-					snds[sm.DRONE].setParamNorm("Gain", .5);
-					snds[sm.DRONE].setParamNorm("play", 1);
+					//snds[sm.DRONE].setParamNorm("Gain", .5);
+					//snds[sm.DRONE].setParamNorm("play", 1);
 
 					switch (m_roles){
 						case 1:

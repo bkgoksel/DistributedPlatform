@@ -95,6 +95,7 @@ require(
 		}
 		window.document.getElementById("0").addEventListener('click', mvtButt)
 		window.document.getElementById("1").addEventListener('click', mvtButt)
+		window.document.getElementById("2").addEventListener('click', mvtButt)
 
 		// secret keyboard shortcuts to play as agent (Ctl-Shift-A, or as human Ctl-Shift-H)
 		window.addEventListener("keydown", keyDown, true);
