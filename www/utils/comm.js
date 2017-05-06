@@ -4,7 +4,13 @@ define(
 
 		return function(i_onOpen){
 
-			var host = document.location.host;
+			var host;
+			if ((window.document.location.hostname).includes("sonicthings.org")){
+				host="sonicthings.org";//+window.document.location.hostname;
+			} else {
+				host="mockserver.com:9000"
+			}
+
 			var ws = new WebSocket('wss://' + host);
 			ws.onopen = i_onOpen;
 
