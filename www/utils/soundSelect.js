@@ -11,16 +11,29 @@ require.config({
 	paths: {
 		"jsaSound": (function(){
 			if (! window.document.location.hostname){
-				alert("This page cannot be run as a file, but must be served from a server (e.g. animatedsoundworks.com:8001, or localhost:8001)." );
+				alert("This page cannot be run as a file, but must be served from a server (e.g. animatedsoundworks.com, or localhost:8001)." );
 			}
+
+//			if ((window.document.location.hostname).includes("animatedsoundworks.com")){
+			var host;
+			if ((window.document.location.hostname).includes("animatedsoundworks.com")){
+				host="https://animatedsoundworks.com";//+window.document.location.hostname;
+			} else {
+				host="https://mockserver.com:8001"
+			}
+				//host="https://animatedsoundworks.com"
+//			} else {
+//				var host = "http://"+window.document.location.hostname + ":8001";
+//			}
+
 			// jsaSound server is hardcoded to port 8001 (on the same server as jsaBard - or from animatedsoundworks)
 				//LOCAL var host = "http://"+window.document.location.hostname + ":8001";
-				var host = "http://"+window.document.location.hostname + ":8001";
+				//var host = "http://"+window.document.location.hostname + ":8001";
 				//var host = "http://"+"172.23.68.214" + ":8001";
 				//alert("will look for sounds served from " + host);
-				return (host );
-			})(),
-		"jquery": "http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min"
+			return (host );
+		})(),
+		"jquery": "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min"
 	}
 });
 define(

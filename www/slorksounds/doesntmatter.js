@@ -1,5 +1,5 @@
 require.config({
-    paths: {"jsaSound": "http://animatedsoundworks.com:8001"}
+    paths: {"jsaSound": "https://animatedsoundworks.com/"}
 });
 // Set path to models served from animatedsoundworks 
 // To use the sound on a web page with its current parameters (and without the slider box):
@@ -25,7 +25,7 @@ function(sndFactory){
           cb && cb(snd);
   // snd.setParam("play", 1);
         });
-        //snd.setParam("Sound URL", "http://animatedsoundworks.com:8001/jsaResources/sounds/milloyGlobalWarming_sm.mp3");
+        //snd.setParam("Sound URL", "https://animatedsoundworks.com//jsaResources/sounds/milloyGlobalWarming_sm.mp3");
 
         snd.setParam("Gain", 0.4);
     });

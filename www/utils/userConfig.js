@@ -3,7 +3,7 @@ Just include this file in a require module, no need to call anything.
 */
 require.config({
   paths: {
-    "jquery": "http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min"
+    "jquery": "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min"
   }
 });
 define(

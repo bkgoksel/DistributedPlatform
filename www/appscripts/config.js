@@ -13,7 +13,9 @@ define(
 
 		exports.maxContourWidth=0; //set this in main 
 
-		exports.resourcesPath = "http://"+window.document.location.hostname + ":8001/";
+		exports.resourcesPath = "https://animatedsoundworks.com";
+		//exports.resourcesPath = "http://"+window.document.location.hostname + ":8001/";
+
 		
     	exports.mvt = {
     			"METADRONE": 0,

@@ -1,5 +1,5 @@
 require.config({
-    paths: {"jsaSound": "http://animatedsoundworks.com:8001"}
+    paths: {"jsaSound": "https://animatedsoundworks.com/"}
 });
 // Set path to models served from animatedsoundworks 
 // To use the sound on a web page with its current parameters (and without the slider box):

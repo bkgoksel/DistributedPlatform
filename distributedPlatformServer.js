@@ -1,12 +1,32 @@
 // The server only needs to register for msgs it needs to intercept
 // Otherwise, msgs between clients just get passed right through. 
 
-var express = require("express")
-, app = express()
-, server = require('http').createServer(app)
-, WebSocketServer = require('ws').Server
-, wss = new WebSocketServer({server: server})
-, fs = require('fs');
+const mode="development";
+
+if (mode=="production") {
+    var express = require("express")
+    , app = express()
+    , server = require('http').createServer(app)
+    , WebSocketServer = require('ws').Server
+    , wss = new WebSocketServer({server: server})
+    , fs = require('fs');
+} else {
+    console.log('using development mode')
+    var express = require("express");
+    var app = express();
+    var https = require('https');
+    var fs = require('fs');
+
+    var WebSocketServer = require('ws').Server
+
+    var options = {
+      key: fs.readFileSync('cert.key'),
+      cert: fs.readFileSync('cert.pem')
+    };
+
+    server = https.createServer(options, app);
+    wss = new WebSocketServer({server: server})
+}
 
 //-------------------------------------------------------------
 var k_portnum = 7000+Math.floor(2000*Math.random());

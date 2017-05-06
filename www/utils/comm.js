@@ -5,7 +5,7 @@ define(
 		return function(i_onOpen){
 
 			var host = document.location.host;
-			var ws = new WebSocket('ws://' + host);
+			var ws = new WebSocket('wss://' + host);
 			ws.onopen = i_onOpen;
 
 			console.log("host is " + host);
