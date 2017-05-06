@@ -29,7 +29,7 @@ if (mode=="production") {
     var WebSocketServer = require('ws').Server
 
     var options = {
-      key: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/cert.key'),
+      key: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/privkey.pem'),
       cert: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/cert.pem')
     };
 
