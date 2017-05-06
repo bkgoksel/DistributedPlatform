@@ -1,7 +1,7 @@
 // The server only needs to register for msgs it needs to intercept
 // Otherwise, msgs between clients just get passed right through. 
 
-const mode="development";
+const mode="production";
 
 if (mode=="production") {
     var express = require("express")
