@@ -14,22 +14,32 @@ k_portnum = process.argv[2] || k_portnum;
 const mode=process.argv[3] || "production";
 
 //--------------------------------------------------------------
-
+var fs = require('fs');
+var express = require("express");
+var app = express();
 
 if (mode=="production") {
-    var express = require("express")
-    , app = express()
-    , server = require('http').createServer(app)
-    , WebSocketServer = require('ws').Server
-    , wss = new WebSocketServer({server: server})
-    , fs = require('fs');
-} else {
-    console.log('using development mode')
-    var express = require("express");
-    var app = express();
+    console.log('using development mode');
+/*
+    var http = require('http')
+    var WebSocketServer = require('ws').Server;
+    var server = http.createServer(app);
+*/
     var https = require('https');
-    var fs = require('fs');
+    var WebSocketServer = require('ws').Server
 
+    var options = {
+      key: fs.readFileSync('/etc/letsencrypt/live/animatedsoundworks.com/cert.key'),
+      cert: fs.readFileSync('/etc/letsencrypt/live/animatedsoundworks.com/cert.pem')
+    };
+
+    var server = https.createServer(options, app);
+
+
+} else {
+    console.log('using development mode');
+
+    var https = require('https');
     var WebSocketServer = require('ws').Server
 
     var options = {
@@ -37,10 +47,11 @@ if (mode=="production") {
       cert: fs.readFileSync('cert.pem')
     };
 
-    server = https.createServer(options, app);
-    wss = new WebSocketServer({server: server})
-}
+    var server = https.createServer(options, app);
 
+}
+    
+var wss = new WebSocketServer({server: server});
 //-------------------------------------------------------------
 
 console.log("Hello from platform server");
