@@ -29,8 +29,8 @@ if (mode=="production") {
     var WebSocketServer = require('ws').Server
 
     var options = {
-      key: fs.readFileSync('/etc/letsencrypt/live/animatedsoundworks.com/cert.key'),
-      cert: fs.readFileSync('/etc/letsencrypt/live/animatedsoundworks.com/cert.pem')
+      key: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/cert.key'),
+      cert: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/cert.pem')
     };
 
     var server = https.createServer(options, app);
