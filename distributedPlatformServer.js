@@ -1,7 +1,20 @@
 // The server only needs to register for msgs it needs to intercept
 // Otherwise, msgs between clients just get passed right through. 
+var k_portnum = 7000+Math.floor(2000*Math.random());
+console.log("messageServer is starting with command line arguments:");
+process.argv.forEach(function (val, index, array) {
+  console.log(index + ': ' + val);
+});
+if (process.argv.length < 3){
+    console.log("Since you didn't specify a port number, we'll use: " + k_portnum)
+    console.log("To specify portnumber, use: node myserver portnum mode (production or dev)");
+    //process.exit(1);
+}
+k_portnum = process.argv[2] || k_portnum;
+const mode=process.argv[3] || "production";
 
-const mode="production";
+//--------------------------------------------------------------
+
 
 if (mode=="production") {
     var express = require("express")
@@ -29,18 +42,7 @@ if (mode=="production") {
 }
 
 //-------------------------------------------------------------
-var k_portnum = 7000+Math.floor(2000*Math.random());
-console.log("messageServer is starting with command line arguments:");
-process.argv.forEach(function (val, index, array) {
-  console.log(index + ': ' + val);
-});
-if (process.argv.length < 3){
-    console.log("Since you didn't specify a port number, we'll use: " + k_portnum)
-    console.log("To specify portnumber, use: node myserver portnum");
-    //process.exit(1);
-}
-var k_portnum = process.argv[2] || k_portnum;
-//--------------------------------------------------------------
+
 console.log("Hello from platform server");
 
 var id = 1; // Given out incrementally to room joining clients

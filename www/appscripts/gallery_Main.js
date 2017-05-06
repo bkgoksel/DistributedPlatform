@@ -7,20 +7,20 @@ require.config({
 				alert("This page cannot be run as a file, but must be served from a server (e.g. animatedsoundworks.com, or localhost:8001)." );
 			}
 				// hardcoded to read sounds served from jsaSaddVectoround listening on port 8001 (on the same server as the AnticipatoryScore server is running)
-			var host;
-			if ((window.document.location.hostname).includes("animatedsoundworks.com")){
-				host="https://animatedsoundworks.com";//+window.document.location.hostname;
+			var sndhost;
+			if ((window.document.location.hostname).includes("sonicthings.org")){
+				sndhost="https://animatedsoundworks.com";//+window.document.location.sndhostname;
 			} else {
-				host="https://mockserver.com:8001"
+				sndhost="https://mockserver.com:8001"
 			}
-//			if ((window.document.location.hostname).includes("animatedsoundworks.com")){
-				//host="https://animatedsoundworks.com";
+//			if ((window.document.location.sndhostname).includes("animatedsoundworks.com")){
+				//sndhost="https://animatedsoundworks.com";
 //			} else {
-//				var host = "http://"+window.document.location.hostname + ":8001";
+//				var sndhost = "http://"+window.document.location.sndhostname + ":8001";
 //			}
-				//var host = "http://"+"172.23.68.214" + ":8001";
-				//alert("Will look for sounds served from " + host);
-			return (host );
+				//var sndhost = "http://"+"172.23.68.214" + ":8001";
+				//alert("Will look for sounds served from " + sndhost);
+			return (sndhost );
 		})()
 	}
 });
@@ -29,6 +29,7 @@ require(
 
 	function (require, soundSelect, commFactory, utils, touch2Mouse,   config, personalConfig, galleryDisplay, player) {
 
+		console.log('yeah, hostname is ' + window.document.location.hostname);
 
 		var comm = commFactory(function(){
 			console.log("OK, comms are ready .... lets go!");
