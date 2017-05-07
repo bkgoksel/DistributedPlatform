@@ -55,6 +55,7 @@ define(
 
 		// trigger whatever process are appropriate for the current movement
 		IPlayer.trigger=function(info=null){
+			console.log('trigger');
 			if (m_currentMvt==mvt["DRONE"]){
 				snds[sm.DRONE].setParamNorm("Gain", .5);
 				snds[sm.DRONE].setParamNorm("play", 1);

@@ -61,7 +61,7 @@ define(
             // to the previous sample - take the max here because we
             // want "fast attack, slow release."
             this.volume = Math.max(rms, this.volume*this.averaging);
-            meter.msgbox.value=this.volume;
+            //meter.msgbox.value=this.volume;
         }
 
 
