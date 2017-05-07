@@ -62,7 +62,7 @@ define(
             va.mediaStreamSource = va.audioContext.createMediaStreamSource(stream);
 
             // Create a new volume meter and connect it.
-            va.meter = meter.createAudioMeter(va.audioContext, .95, .95, 750);
+            va.meter = meter.createAudioMeter(va.audioContext, .1, .95, 750);
             va.mediaStreamSource.connect(va.meter);
             msgbox.value="got meter(?)!"
 
