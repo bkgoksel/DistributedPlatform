@@ -72,9 +72,11 @@ define(
 
         va.pollLoop=function ( time ) {
             // check if we're currently clipping
-            if (va.meter.checkClipping())
-                msgbox.value="got clipping!"
+
+            if (va.meter.checkClipping()) {
+                msgbox.value="clipping!"
                 va.cb()
+            }
 
             // set up the next visual callback
             va.rafID = window.requestAnimationFrame( va.pollLoop );
