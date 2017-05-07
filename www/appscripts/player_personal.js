@@ -13,6 +13,7 @@ define(
 			//"../slorksounds/MyRisset",			
 			"jsaSound/jsaModels/Leonardo/jsaDistributedDrone2Leonardo",
 			"jsaSound/jsaModels/Ame/RandomBirdSample",
+			"../slorksounds/slorkMonster",
 			"jsaSound/jsaModels/RainLoop",
 			"../slorksounds/MyGrannySwing"
 			//"jsaSound/jsaModels/jsaFMnative2",
@@ -27,15 +28,16 @@ define(
 			"dong" : 0,
 			"DRONE" : 1,
 			"BIRDS" : 2,
-			"rainloop" : 3,
-			"GRANNYSWING" : 4
+			"SLORKMONSTER" : 3,
+			"RAIN" : 4,
+			"GRANNYSWING" : 5
 		}
 
 		// convenient movement designation 
 		var mvt = {
 			"BIRDS" : 0,
 			"DRONE" : 1,
-			"GRANNYSWING" : 2
+			"SLORKMONSTER" : 2
 		}
 
 		var m_playingP=false;
@@ -56,13 +58,18 @@ define(
 		// trigger whatever process are appropriate for the current movement
 		IPlayer.trigger=function(info=null){
 			console.log('trigger');
-			if (m_currentMvt==mvt["DRONE"]){
-				snds[sm.DRONE].setParamNorm("Gain", .5);
-				snds[sm.DRONE].setParamNorm("play", 1);
-				setTimeout(function(){
-					snds[sm.DRONE].setParamNorm("play", 0);
-				}, 1200)
-			}
+			switch(m_currentMvt){
+				case mvt["DRONE"]:
+					snds[sm.DRONE].setParamNorm("Gain", .5);
+					snds[sm.DRONE].setParamNorm("play", 1);
+					setTimeout(function(){
+						snds[sm.DRONE].setParamNorm("play", 0);
+					}, 1200)
+					break;
+
+				case mvt["SLORKMONSTER"] :
+					break;
+				}
 
 		}
 
@@ -271,6 +278,13 @@ define(
 					snds[sm.GRANNYSWING].setParamNorm("Pitch", .2+.5*Math.random());
 
 					break;
+
+
+				case mvt.SLORKMONSTER :
+					snds[sm.SLORKMONSTER].setParamNorm("play", 1);
+					break;
+
+
 
 				case mvt.DRONE:
 
