@@ -5,7 +5,7 @@ define(
         meter = {}
 
         meter.createAudioMeter=function(audioContext,clipLevel,averaging,clipLag) {
-            var msgbox = document.getElementById("msg");
+            meter.msgbox = document.getElementById("msg");
 
             var processor = audioContext.createScriptProcessor(512);
             processor.onaudioprocess = meter.volumeAudioProcess;
@@ -61,7 +61,7 @@ define(
             // to the previous sample - take the max here because we
             // want "fast attack, slow release."
             this.volume = Math.max(rms, this.volume*this.averaging);
-            msgbox.value=this.volume;
+            meter.msgbox.value=this.volume;
         }
 
 
