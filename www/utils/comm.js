@@ -8,7 +8,7 @@ define(
 			if ((window.document.location.hostname).includes("sonicthings.org")){
 				host="sonicthings.org:9999";//+window.document.location.hostname;
 			} else {
-				host="mockserver.com:9001"
+				host="mockserver.com:9999"
 			}
 
 			var ws = new WebSocket('wss://' + host);
