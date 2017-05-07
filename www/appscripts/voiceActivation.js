@@ -64,6 +64,7 @@ define(
             // Create a new volume meter and connect it.
             va.meter = meter.createAudioMeter(va.audioContext, .95, .95, 750);
             va.mediaStreamSource.connect(va.meter);
+            msgbox.value="got meter(?)!"
 
             // kick off the visual updating
             va.pollLoop();
@@ -72,6 +73,7 @@ define(
         va.pollLoop=function ( time ) {
             // check if we're currently clipping
             if (va.meter.checkClipping())
+                msgbox.value="got clipping!"
                 va.cb()
 
             // set up the next visual callback
