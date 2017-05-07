@@ -69,13 +69,19 @@ define(
             // kick off the visual updating
             va.pollLoop();
         }
-        var cnt=0
+
+        var clippingP=false;
         va.pollLoop=function ( time ) {
             // check if we're currently clipping
-
             if (va.meter.checkClipping()) {
-                msgbox.value="clipping!"
-                va.cb()
+                if (!clippingP){  // only trigger on the upward edge
+                    msgbox.value="clipping!"
+                    clippingP=true;
+                    va.cb()
+                } 
+            }else{ // clipping is averaged, so takes a while to return to not clipping
+                msgbox.value="..."
+                clippingP=false;
             }
 
             // set up the next visual callback
