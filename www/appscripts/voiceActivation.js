@@ -69,10 +69,10 @@ define(
             // kick off the visual updating
             va.pollLoop();
         }
-
+        var cnt=0
         va.pollLoop=function ( time ) {
             // check if we're currently clipping
-
+            msgbox.value="poll Loop " + (cnt++)
             if (va.meter.checkClipping()) {
                 msgbox.value="clipping!"
                 va.cb()
