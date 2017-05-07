@@ -30,7 +30,9 @@ if (mode=="production") {
 
     var options = {
       key: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/privkey.pem'),
-      cert: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/cert.pem')
+      cert: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/fullchain.pem'),
+      requestCert: true,
+      rejectUnauthorized: false
     };
 
     var server = https.createServer(options, app);
@@ -44,7 +46,9 @@ if (mode=="production") {
 
     var options = {
       key: fs.readFileSync('cert.key'),
-      cert: fs.readFileSync('cert.pem')
+      cert: fs.readFileSync('cert.pem'),
+      requestCert: true,
+      rejectUnauthorized: false
     };
 
     var server = https.createServer(options, app);
