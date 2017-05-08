@@ -55,7 +55,7 @@ define(
 		var IPlayer={};
 
 		m_groupGain=0;
-		m_personalGain=1;
+		m_personalGain=6;
 
 		IPlayer.getAudioContext=function(){
 			return snds[0].getAudioContext();
@@ -66,7 +66,7 @@ define(
 			console.log('trigger');
 			switch(m_currentMvt){
 				case mvt["DRONE"]:
-					snds[sm.DRONE].setParamNorm("Gain", .5);
+					snds[sm.DRONE].setParamNorm("Gain", .5*m_groupGain*m_personalGain);
 					snds[sm.DRONE].setParamNorm("play", 1);
 					setTimeout(function(){
 						snds[sm.DRONE].setParamNorm("play", 0);
@@ -361,7 +361,7 @@ define(
 					snds[sm.osc].setParam("Attack Time", 5);
 					snds[sm.osc].setParam("play", 1);
 					snds[sm.osc].setParam("Frequency", 60+m_role*sndParams["rissetSpacing"]);
-					snds[sm.osc].setParamNorm("Gain", .1);
+					snds[sm.osc].setParamNorm("Gain", .1*m_groupGain*m_personalGain);
 					break;
 				case mvt.THUNDER:
 					msgbox.value="rain" + snds[sm.rainLoop];
@@ -372,8 +372,8 @@ define(
 				case mvt.SWING:
 					m_myMicroPlayPhase=Math.random();
 					m_nextSnd = sm.swing1;
-					snds[sm.swing1].setParamNorm("Gain", .6);
-					snds[sm.swing2].setParamNorm("Gain", .2);
+					snds[sm.swing1].setParamNorm("Gain", .6*m_groupGain*m_personalGain);
+					snds[sm.swing2].setParamNorm("Gain", .2*m_groupGain*m_personalGain);
 
 					console.log("My microphase playtime is " + m_myMicroPlayPhase);
 					break;
@@ -381,7 +381,7 @@ define(
 					msgbox.value="grannyvoice" + snds[sm.grannyvoice];
 					snds[sm.grannyvoice].setRole(m_role, m_roles);
 					snds[sm.grannyvoice].setParam("play", 1);
-					snds[sm.grannyvoice].setParamNorm("Gain", .25);
+					snds[sm.grannyvoice].setParamNorm("Gain", .25*m_groupGain*m_personalGain);
 					break;
 				case mvt.PEEPER:
 					sndParams.ref_microCycles=30- Math.min(m_roles, 10);
