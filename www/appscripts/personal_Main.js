@@ -36,6 +36,8 @@ require(
 
 			var msgbox = document.getElementById("msg");
 
+			var sndsLoaded=false;
+
 
 			//var configure = function (){
 			personalConfig.report(function(){
@@ -101,6 +103,8 @@ require(
 					}
 
  					//++++++++++++++++++++++++++++++++++++++++++
+
+ 					sndsLoaded=true;
 
 				} else{
 					alert("myRoom is undefined .... Not Subscribing")
@@ -270,7 +274,9 @@ require(
 					if (! (m_eventBeta && m_eventGamma)) return; // not getting data yet
 					pd.setPitch(m_eventBeta);
 					pd.setAngle(m_eventGamma);
-					player.setSndParam("Detune", m_eventBeta/90);
+					if (sndsLoaded){
+						player.setSndParam("Detune", m_eventBeta/90);
+					}
 					
 					/*
 					if (player.isPlaying()){

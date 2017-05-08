@@ -128,10 +128,10 @@ define(
 				snds[sm.DRONE].setParam("First Note Number", i_val);
 			}
 			if (i_pname==="Detune"){ // [-1,1]
+				// map [-.5, .5] to 
 				//snds[sm.DRONE].setParam("Detune", i_val);
-				setPersonalGain((i_val+1)/2.)
-			}
-			
+				setPersonalGain(Math.max(Math.min(utils.map(-.5, .5, 0, 1),1),0))
+			}			
 		}
 
 		var sndParams = { // these are piece-specific
