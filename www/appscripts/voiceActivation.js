@@ -33,7 +33,7 @@ define(
                 navigator.mediaDevices.mozGetUserMedia;
 
             if (! navigator.mediaDevices.getUserMedia){
-                alert('cant even get the damn function call')
+                alert('No voice activation availabe from what is probably an iOS device')
             }
             // ask for an audio input
             navigator.mediaDevices.getUserMedia(
@@ -80,7 +80,7 @@ define(
                     va.cb()
                 } 
             }else{ // clipping is averaged, so takes a while to return to not clipping
-                msgbox.value="..."
+                //msgbox.value="..."
                 clippingP=false;
             }
 

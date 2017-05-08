@@ -3,7 +3,7 @@ define(
 		exports = {};
 		exports.webkitAudioEnabled=true;
 
-		if (!window.webkitAudioContext && !window.AudioContext) {
+		if (!window.AudioContext && !window.webkitAudioContext) {
 			alert("Web Audio API is not supported - you can play, but you your device will not sound.");
 			exports.webkitAudioEnabled=false;
 		}

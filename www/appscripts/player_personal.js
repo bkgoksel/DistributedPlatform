@@ -81,8 +81,9 @@ define(
 
 		setPersonalGain=function(val){
 			m_personalGain=val;
+			msgbox.value="pg = " + val
 			for (i=0;i<sndlist.length;i++){
-				snds[i].setParamNorm("Gain", 2*m_groupGain*m_personalGain);
+				snds[i] && snds[i].setParamNorm("Gain", 2*m_groupGain*m_personalGain);
 			}
 		}
 		
@@ -90,7 +91,7 @@ define(
 		IPlayer.setGain=function(nval){
 			m_groupGain=nval;
 			for (i=0;i<sndlist.length;i++){
-				snds[i].setParamNorm("Gain", 2*m_groupGain*m_personalGain);
+				snds[i] && snds[i].setParamNorm("Gain", 2*m_groupGain*m_personalGain);
 			}
 		}
 
