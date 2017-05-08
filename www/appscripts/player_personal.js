@@ -85,7 +85,7 @@ define(
 				snds[i].setParamNorm("Gain", 2*m_groupGain*m_personalGain);
 			}
 		}
-		}
+		
 
 		IPlayer.setGain=function(nval){
 			m_groupGain=nval;
