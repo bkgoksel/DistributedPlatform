@@ -270,7 +270,7 @@ require(
 					if (! (m_eventBeta && m_eventGamma)) return; // not getting data yet
 					pd.setPitch(m_eventBeta);
 					pd.setAngle(m_eventGamma);
-					player.setSndParam("Detune", m_eventGamma/90);
+					player.setSndParam("Detune", m_eventBeta/90);
 					
 					/*
 					if (player.isPlaying()){
