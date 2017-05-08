@@ -7,10 +7,20 @@ define(
     	is between the time time of the last tick and the current tick. 
     */ 
     function(){
-    	return function (initPhase) { // Factor function 
+    	return function (initPhase, rps=1, events=[], tickPeriodMS=50, auto=false) { // Factor function 
 	        var pt = {};
 	        pt.lastTickPhase=initPhase;
 	    	pt.triggerList=[];
+
+	    	timerID=null;
+	    	pt.currentPhase=pt.lastTickPhase;
+	    	rpsMS=rps/1000.;
+
+
+	    	pt.stop=function(){
+	    		clearInterval(timerID)
+	    	}
+
 
 	        pt.tick=function(phase){
 	        	if ((phase > pt.lastTickPhase) || ((pt.lastTickPhase-phase) > 0)) { // then were stricly going forward}
@@ -44,6 +54,22 @@ define(
 	    		pt.lastTickPhase=phase;
 	    	}
 
+	    	// ----------------------------
+
+	    	console.log('phasetrigger here ');
+	    	
+	    	for (i=0;i<events.length;i++){
+	    		pt.addEvent(events[i].phase, events[i].cb, events[i].id)
+	    	}
+
+	    	if (auto){
+	    		timerID=setInterval(function(){ 
+	    			pt.currentPhase= (pt.currentPhase + rpsMS*2*Math.PI*(tickPeriodMS))%(2*Math.PI);
+	    			pt.tick(pt.currentPhase);
+	    			 }, tickPeriodMS);
+	    	}
+	
+			
 	        return pt;
 	    }
     }

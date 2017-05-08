@@ -278,7 +278,7 @@ require(
 					}
 					*/
 					//if (pd.playButton.pushedP){
-					comm.sendJSONmsg("devicePitch", [m_eventBeta]);
+					//comm.sendJSONmsg("devicePitch", [m_eventBeta]);
 					//}
 
 			}, 100);

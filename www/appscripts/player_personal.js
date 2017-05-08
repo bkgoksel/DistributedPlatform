@@ -1,21 +1,24 @@
 define(
-    ["config", "soundLoader", "../utils/utils"],
-    function (config, soundLoader, utils) {
+    ["config", "soundLoader", "../utils/utils", "../utils/phaseTrigger"],
+    function (config, soundLoader, utils, phaseTrigger) {
 		var msgbox = document.getElementById("msg");
 		var mvt = config.mvt;
 		var m_currentMvt=-1;
 
 		var m_soundsLoaded=false;
 
+
 		var sndlist=[
 
-			"jsaSound/jsaModels/dong",	
+			//"jsaSound/jsaModels/dong",
+			"jsaSound/jsaModels/CrowdLaughingLoop",	
 			//"../slorksounds/MyRisset",			
 			"jsaSound/jsaModels/Leonardo/jsaDistributedDrone2Leonardo",
 			"jsaSound/jsaModels/Ame/RandomBirdSample",
 			"../slorksounds/slorkMonster",
 			"jsaSound/jsaModels/RainLoop",
-			"../slorksounds/MyGrannySwing"
+			"../slorksounds/MyGrannySwing",
+			"jsaSound/jsaModels/LA_Ah",
 			//"jsaSound/jsaModels/jsaFMnative2",
 			//"jsaSound/jsaModels/SoD/Dragster",
 			//"jsaSound/jsaModels/peeperSyllable",
@@ -25,19 +28,22 @@ define(
 
 		//convenient sound model list, order needs to correspond to sndlist order
 		var sm = {
-			"dong" : 0,
+			"CrowdLaughingLoop" : 0,
 			"DRONE" : 1,
 			"BIRDS" : 2,
 			"SLORKMONSTER" : 3,
 			"RAIN" : 4,
-			"GRANNYSWING" : 5
+			"GRANNYSWING" : 5,
+			"LA_AH" : 6
 		}
 
 		// convenient movement designation 
 		var mvt = {
-			"BIRDS" : 0,
-			"DRONE" : 1,
-			"SLORKMONSTER" : 2
+			"CROWD" : 0,
+			"BIRDS" : 1,
+			"DRONE" : 2,
+			"SLORKMONSTER" : 3,
+			"LA_AH" : 4
 		}
 
 		var m_playingP=false;
@@ -73,10 +79,17 @@ define(
 
 		}
 
+		setPersonalGain=function(val){
+			m_personalGain=val;
+			for (i=0;i<sndlist.length;i++){
+				snds[i].setParamNorm("Gain", 2*m_groupGain*m_personalGain);
+			}
+		}
+		}
 
 		IPlayer.setGain=function(nval){
+			m_groupGain=nval;
 			for (i=0;i<sndlist.length;i++){
-				m_groupGain=nval
 				snds[i].setParamNorm("Gain", 2*m_groupGain*m_personalGain);
 			}
 		}
@@ -113,8 +126,9 @@ define(
 			if (i_pname==="noteNum"){
 				snds[sm.DRONE].setParam("First Note Number", i_val);
 			}
-			if (i_pname==="Detune"){
-				snds[sm.DRONE].setParam("Detune", i_val);
+			if (i_pname==="Detune"){ // [-1,1]
+				//snds[sm.DRONE].setParam("Detune", i_val);
+				setPersonalGain((i_val+1)/2.)
 			}
 			
 		}
@@ -207,6 +221,20 @@ define(
 
 		}
 
+		var laplay=function(id){
+			console.log('laurie play');
+			snds[sm.LA_AH].setParam("play", 1);
+			setTimeout(function(){
+    			snds[sm.LA_AH].setParam("release", 1);
+    		}, 300);
+		}
+
+
+		var stopLA=function(){
+			if (snds[sm.LA_AH].ptrigger){
+				snds[sm.LA_AH].ptrigger.stop();
+			}
+		}
 
 			
 		var snds;
@@ -243,6 +271,7 @@ define(
 			}
 			IPlayer.stopBirds();
 			IPlayer.stopgrannys();
+			stopLA();
 			m_playingP=false;
 		}
 
@@ -269,6 +298,13 @@ define(
 			m_playingP=true;
 
 			switch(i_mvt){
+
+				case mvt.CROWD:
+					foo = Math.random();
+					console.log('set crown loop phase to ' + foo)
+					snds[sm.CrowdLaughingLoop].setParam("Loop Start Phase", foo);
+					snds[sm.CrowdLaughingLoop].setParam("play", 1);
+					break;
 				case mvt.BIRDS:
 					IPlayer.playBirds();
 					break;
@@ -282,6 +318,19 @@ define(
 
 				case mvt.SLORKMONSTER :
 					snds[sm.SLORKMONSTER].setParamNorm("play", 1);
+					break;
+
+
+
+				case mvt.LA_AH :
+					console.log('laurie setup')
+
+					snds[sm.LA_AH].ptrigger = phaseTrigger(0,2,
+						[{phase : 2*Math.PI*Math.random(),
+							cb: laplay,
+							id: 0}
+						], 50, true);
+
 					break;
 
 
