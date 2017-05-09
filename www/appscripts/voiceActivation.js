@@ -82,6 +82,7 @@ define(
                 } 
             }else{ // clipping is averaged, so takes a while to return to not clipping
                 //msgbox.value="..."
+                msgbox.value=""
                 clippingP=false;
             }
 

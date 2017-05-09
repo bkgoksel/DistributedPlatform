@@ -45,7 +45,7 @@ define(
 					snds[i].setParamNorm("Gain", .4*eGain);
 				break;
 				case sm.DRONE :
-					snds[i].setParamNorm("Gain", 1.2*eGain);
+					snds[i].setParamNorm("Gain", 2.5*eGain);
 				break;
 				case sm.BIRDS :
 					snds[i].setParamNorm("Gain", .8*eGain);
