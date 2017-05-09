@@ -60,7 +60,7 @@ require(
 						}
 					);	
 					
-
+					msgbox.value="try fullscreen";
 					//++++++++++++++++++++++++++++++++++++
 					var da = document.getElementById("wrap");
 					da.addEventListener("fullscreenerror", function(){console.log("fullscreenerror");});
@@ -93,7 +93,7 @@ require(
 				    	}}, 2000);
 				    */
 				    //++++++++++++++++++++++++++++++++++++++++++
-
+				    msgbox.value="try orientation";
 					if ('orientation' in screen) {
 					   console.log("orientation should be supported 1");
 					   screen.orientation.lock("portrait-primary");
@@ -140,7 +140,7 @@ require(
 			var m_tickCount=0;
 
 			// reduce GUI burden // var k_timeDisplayElm=window.document.getElementById("timeDisplayDiv");
-
+			msgbox.value="get pd";
 			var pd = personalDisplay(document.getElementById("svg_area"));
 			//document.getElementById("svg_area").innerHTML="Hellow World"
 
