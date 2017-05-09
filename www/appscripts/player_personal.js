@@ -82,7 +82,7 @@ define(
 		var IPlayer={};
 
 		m_groupGain=0;
-		m_personalGain=6;
+		m_personalGain=.6;
 
 		IPlayer.getAudioContext=function(){
 			return snds[0].getAudioContext();
@@ -108,7 +108,7 @@ define(
 
 		setPersonalGain=function(val){
 			m_personalGain=val;
-			msgbox.value="pg = " + val
+			msgbox.value="pg = " + val;
 			for (i=0;i<sndlist.length;i++){
 				snds[i] && setSndGain(i, m_groupGain*m_personalGain);
 			}
@@ -312,6 +312,7 @@ define(
 					console.log('set crown loop phase to ' + foo)
 					snds[sm.CrowdLaughingLoop].setParam("Loop Start Phase", foo);
 					snds[sm.CrowdLaughingLoop].setParam("play", 1);
+					setSndGain(sm.CrowdLaughingLoop, m_groupGain*m_personalGain);
 					break;
 				case mvt.BIRDS:
 					IPlayer.playBirds();
@@ -320,6 +321,7 @@ define(
 
 				case mvt.SLORKMONSTER :
 					snds[sm.SLORKMONSTER].setParamNorm("play", 1);
+					setSndGain(sm.SLORKMONSTER, m_groupGain*m_personalGain)
 					break;
 
 
