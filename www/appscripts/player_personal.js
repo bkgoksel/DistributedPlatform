@@ -109,9 +109,6 @@ define(
 		setPersonalGain=function(val){
 			m_personalGain=val;
 			for (i=0;i<sndlist.length;i++){
-				if (i == sm.CrowdLaughingLoop){
-					msgbox.value="crowd gain  to " val;
-				}
 				snds[i] && setSndGain(i, m_groupGain*m_personalGain);
 			}
 		}
