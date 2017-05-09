@@ -44,7 +44,9 @@ define(
     }
   } 
 
+    msgbox.value="run sndFactory";
     var okSound=sndFactory();
+    msgbox.value="ran sndFactory";
     
     var uconfig = {
       "player": undefined,
@@ -58,6 +60,7 @@ define(
           permitSubmit();
         }
     } 
+    msgbox.value="personal config";
 
     uconfig.report = function(c_id) {
    

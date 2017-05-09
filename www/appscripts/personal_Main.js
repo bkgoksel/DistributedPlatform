@@ -35,6 +35,7 @@ require(
 			var m_troll = document.getElementById("troll");
 
 			var msgbox = document.getElementById("msg");
+			msgbox.value="loading main";
 
 			var sndsLoaded=false;
 
