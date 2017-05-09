@@ -16,9 +16,9 @@ define(
 			"jsaSound/jsaModels/Leonardo/jsaDistributedDrone2Leonardo",
 			"jsaSound/jsaModels/Ame/RandomBirdSample",
 			"../slorksounds/slorkMonster",
-			"jsaSound/jsaModels/RainLoop",
-			"../slorksounds/MyGrannySwing",
+
 			"jsaSound/jsaModels/LA_Ah",
+			"jsaSound/jsaModels/LA_2Ah",
 			//"jsaSound/jsaModels/jsaFMnative2",
 			//"jsaSound/jsaModels/SoD/Dragster",
 			//"jsaSound/jsaModels/peeperSyllable",
@@ -26,16 +26,43 @@ define(
 			//"jsaSound/jsaModels/peeperSyllable"
 		]; // sound files to use for the piece, hardcoded
 
+
+
 		//convenient sound model list, order needs to correspond to sndlist order
 		var sm = {
 			"CrowdLaughingLoop" : 0,
 			"DRONE" : 1,
 			"BIRDS" : 2,
 			"SLORKMONSTER" : 3,
-			"RAIN" : 4,
-			"GRANNYSWING" : 5,
-			"LA_AH" : 6
+			"LA_AH" : 4,
+			"LA_2AH" : 5
 		}
+
+		// one place to control the relative gains of all the sounds
+		var setSndGain=function(i, eGain){
+			switch(i) {
+				case "CrowdLaughingLoop" :
+					snd[i].setParamNorm("Gain", .4*eGain);
+				break;
+				case "DRONE" :
+					snd[i].setParamNorm("Gain", 1.2*eGain);
+				break;
+				case "BIRDS" :
+					snd[i].setParamNorm("Gain", .8*eGain);
+				break;
+				case "SLORKMONSTER" :
+					snd[i].setParamNorm("Gain", .8*eGain);
+				break;
+				case "LA_AH" :
+					snd[i].setParamNorm("Gain", .8*eGain);
+				break;
+				case "LA_2AH" :
+					snd[i].setParamNorm("Gain", .7*eGain);
+				break;
+			}
+
+		}
+
 
 		// convenient movement designation 
 		var mvt = {
@@ -66,7 +93,7 @@ define(
 			console.log('trigger');
 			switch(m_currentMvt){
 				case mvt["DRONE"]:
-					snds[sm.DRONE].setParamNorm("Gain", .5*m_groupGain*m_personalGain);
+					setSndGain(sm.DRONE, m_groupGain*m_personalGain);
 					snds[sm.DRONE].setParamNorm("play", 1);
 					setTimeout(function(){
 						snds[sm.DRONE].setParamNorm("play", 0);
@@ -83,7 +110,7 @@ define(
 			m_personalGain=val;
 			msgbox.value="pg = " + val
 			for (i=0;i<sndlist.length;i++){
-				snds[i] && snds[i].setParamNorm("Gain", 2*m_groupGain*m_personalGain);
+				snds[i] && setSndGain(i, m_groupGain*m_personalGain);
 			}
 		}
 		
@@ -91,7 +118,7 @@ define(
 		IPlayer.setGain=function(nval){
 			m_groupGain=nval;
 			for (i=0;i<sndlist.length;i++){
-				snds[i] && snds[i].setParamNorm("Gain", 2*m_groupGain*m_personalGain);
+				snds[i] && setSndGain(i, m_groupGain*m_personalGain);
 			}
 		}
 
@@ -183,57 +210,38 @@ define(
 		}
 
 		//--------------
-		var grannyPlayingP=false;
-		var grannyInterval=10000;
-		var grannyTimer;
-
 
 		IPlayer.setDensity=function(nval){
-			grannyInterval=1000*Math.pow(2,2+3*nval); //[4secs, 32saecs]
-			if (grannysPlayingP) {
-				grannyTimer && clearTimeout(grannyTimer);
-				grannyTimer=setTimeout(grannyTrigger, Math.max(2000, grannyInterval*Math.random()));
+
+		}
+
+
+		var laplay=function(ph, id){
+			
+			if (id == 0){
+				console.log('playing 1Ah')
+				snds[sm.LA_AH].setParam("play", 1);
+				setTimeout(function(){
+	    			snds[sm.LA_AH].setParam("release", 1);
+	    		}, 300);
+			} else { // play the double Ah sound
+				
+				console.log('playing 2Ah')
+				snds[sm.LA_2AH].setParam("play", 1);
+				setTimeout(function(){
+	    			snds[sm.LA_2AH].setParam("release", 1);
+	    		}, 300);
+
 			}
-		}
-
-		IPlayer.playgrannys=function(){
-			console.log("play granny");
-			var foot;
-			grannysPlayingP=true;
-			grannyTimer && clearTimeout(grannyTimer);
-			foot = Math.max(2000, grannyInterval*Math.random());
-			grannyTimer=setTimeout(grannyTrigger, foot);
-			console.log('granny set to play in ms from now: ' + foot);
-		}
-
-		var grannyTrigger = function(){
-			if (grannysPlayingP) {
-				console.log("trigger granny");
-				snds[sm.GRANNYSWING].setParam("play", 1);
-				grannyTimer && clearTimeout(grannyTimer); // don't let timers overlap (can happen with these random intervals)
-				grannyTimer=setTimeout(grannyTrigger, Math.max(2000, grannyInterval*Math.random()));
-			}		
-		}
-
-		IPlayer.stopgrannys=function(){
-			console.log("stop granny");
-			grannysPlayingP=false;
-			snds[sm.GRANNYSWING].setParam("play", 0);
-
-		}
-
-		var laplay=function(id){
-			console.log('laurie play');
-			snds[sm.LA_AH].setParam("play", 1);
-			setTimeout(function(){
-    			snds[sm.LA_AH].setParam("release", 1);
-    		}, 300);
 		}
 
 
 		var stopLA=function(){
 			if (snds[sm.LA_AH].ptrigger){
 				snds[sm.LA_AH].ptrigger.stop();
+			}
+			if (snds[sm.LA_2AH].ptrigger){
+				snds[sm.LA_2AH].ptrigger.stop();
 			}
 		}
 
@@ -271,7 +279,6 @@ define(
 				snds[i] && snds[i].release();
 			}
 			IPlayer.stopBirds();
-			IPlayer.stopgrannys();
 			stopLA();
 			m_playingP=false;
 		}
@@ -310,12 +317,6 @@ define(
 					IPlayer.playBirds();
 					break;
 
-				case mvt.GRANNYSWING :
-					IPlayer.playgrannys();
-					snds[sm.GRANNYSWING].setParamNorm("Pitch", .2+.5*Math.random());
-
-					break;
-
 
 				case mvt.SLORKMONSTER :
 					snds[sm.SLORKMONSTER].setParamNorm("play", 1);
@@ -326,15 +327,33 @@ define(
 				case mvt.LA_AH :
 					console.log('laurie setup')
 
-					snds[sm.LA_AH].ptrigger = phaseTrigger(0,2,
-						[{phase : 2*Math.PI*Math.random(),
-							cb: laplay,
-							id: 0}
-						], 50, true);
+					if ((m_role%2)==0){
+						setTimeout(function(){
+							snds[sm.LA_AH].ptrigger = phaseTrigger(0,2,
+							[{phase : 2*Math.PI*Math.random(),
+								cb: laplay,
+								id: 0} // even/odd role will be used to decide which sound to play
+							], 40, true);
+						}, 4000*Math.random());
+					} else {
+						setTimeout(function(){
+							basePhase=2.*Math.PI*Math.random();
+							snds[sm.LA_2AH].ptrigger = phaseTrigger(0,1,
+							[{phase : basePhase,
+								cb: laplay,
+								id: 1}, // even/odd role will be used to decide which sound to play
+							 {phase : (basePhase+Math.PI)%(2.*Math.PI),
+								cb: laplay,
+								id: 1},
+							 {phase : (basePhase+1.25*Math.PI)%(2.*Math.PI),
+								cb: laplay,
+								id: 1}
+
+							], 40, true);
+						}, 4000+4000*Math.random());
+					}
 
 					break;
-
-
 
 				case mvt.DRONE:
 
@@ -357,53 +376,6 @@ define(
 
 
 					break;
-				case mvt.RISSET:
-					msgbox.value="risset" + snds[sm.osc];
-					snds[sm.osc].setParam("Attack Time", 5);
-					snds[sm.osc].setParam("play", 1);
-					snds[sm.osc].setParam("Frequency", 60+m_role*sndParams["rissetSpacing"]);
-					snds[sm.osc].setParamNorm("Gain", .1*m_groupGain*m_personalGain);
-					break;
-				case mvt.THUNDER:
-					msgbox.value="rain" + snds[sm.rainLoop];
-					snds[sm.rainLoop].setParam("Attack Time", 5);
-					snds[sm.rainLoop].setParam("Loop Start Phase", Math.random());
-					snds[sm.rainLoop].setParam("play", 1);
-					break;
-				case mvt.SWING:
-					m_myMicroPlayPhase=Math.random();
-					m_nextSnd = sm.swing1;
-					snds[sm.swing1].setParamNorm("Gain", .6*m_groupGain*m_personalGain);
-					snds[sm.swing2].setParamNorm("Gain", .2*m_groupGain*m_personalGain);
-
-					console.log("My microphase playtime is " + m_myMicroPlayPhase);
-					break;
-				case mvt.GRANNYVOICE:
-					msgbox.value="grannyvoice" + snds[sm.grannyvoice];
-					snds[sm.grannyvoice].setRole(m_role, m_roles);
-					snds[sm.grannyvoice].setParam("play", 1);
-					snds[sm.grannyvoice].setParamNorm("Gain", .25*m_groupGain*m_personalGain);
-					break;
-				case mvt.PEEPER:
-					sndParams.ref_microCycles=30- Math.min(m_roles, 10);
-					console.log("ref_microCycles=" + sndParams.ref_microCycles);
-					m_myMicroPlayPhase=Math.random();
-					m_myMicroStopPhase=(m_myMicroPlayPhase + (.16 -.01*Math.min(m_roles, 10))+ .06*Math.random()) % 1;
-					console.log("peeper start phase is " + m_myMicroPlayPhase + ", and stop phase is " + m_myMicroStopPhase);
-
-					temp = Math.random();  // for cf and volume (higher cf needs more volume)
-					snds[sm.peeper].setParamNorm("Gain", .10+.1*temp);
-
-					// for ChirpExp
-					//snds[sm.peeper].setParam("Carrier Frequency", 4400 + 600*temp);
-					//snds[sm.peeper].setParam("Modulator Frequency", 16+8*Math.random());
-					snds[sm.peeper].setParam("Center Frequency (octaves)", 3.25 + .2*temp);
-					snds[sm.peeper].setParam("Chirp Rate", 16+8*Math.random());
-
-
-					sndParams.microCycles=sndParams.ref_microCycles+6*(Math.random()-.5);
-					console.log("microCycles=" + sndParams.microCycles);
-					break;
 
 
 				default: 
@@ -417,13 +389,6 @@ define(
 							
 
 			m_mvt=i_mvt;
-		}
-
-		var granny = {
-			"ref":.1,  //reference value for parameters
-			"interval": 1,  // baseline factor rel ref
-			"grainSizeFactor": 2, // relative to ref
-			"stepSizeFactor": 1, // relative to ref
 		}
 
 

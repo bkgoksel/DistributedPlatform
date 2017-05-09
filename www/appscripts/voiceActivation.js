@@ -34,24 +34,25 @@ define(
 
             if (! navigator.mediaDevices.getUserMedia){
                 alert('No voice activation availabe from what is probably an iOS device')
-            }
+            } else {
             // ask for an audio input
-            navigator.mediaDevices.getUserMedia(
-            {
-                audio: true
-                /*{
-                        "googEchoCancellation": "false",
-                        "googAutoGainControl": "false",
-                        "googNoiseSuppression": "false",
-                        "googHighpassFilter": "false"
+                navigator.mediaDevices.getUserMedia(
+                {
+                    audio: true
+                    /*{
+                            "googEchoCancellation": "false",
+                            "googAutoGainControl": "false",
+                            "googNoiseSuppression": "false",
+                            "googHighpassFilter": "false"
 
-                },*/
-            }).then(function(stream){
-                va.gotStream(stream);
-            }).catch(function(err){
-                alert(err);
-                didntGetStream();
-            });
+                    },*/
+                }).then(function(stream){
+                    va.gotStream(stream);
+                }).catch(function(err){
+                    alert(err);
+                    didntGetStream();
+                });
+            }
         }
         
 

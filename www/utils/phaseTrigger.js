@@ -26,10 +26,12 @@ define(
 	        	if ((phase > pt.lastTickPhase) || ((pt.lastTickPhase-phase) > 0)) { // then were stricly going forward}
 		        	for (i=0;i<pt.triggerList.length;i++){
 		        		if ((pt.lastTickPhase <= pt.triggerList[i].phase) && pt.triggerList[i].phase < phase ) {
+		        			console.log('triggering at phase ' + phase);
 		        			pt.triggerList[i].cb(pt.triggerList[i].phase, pt.triggerList[i].id)
 		        		}
 		        		if (pt.lastTickPhase > phase) { // phase wrapped
 		        			if ((pt.lastTickPhase <= pt.triggerList[i].phase) || pt.triggerList[i].phase < phase ) {
+		        				console.log('triggering at phase ' + phase);
 		        				pt.triggerList[i].cb(pt.triggerList[i].phase, pt.triggerList[i].id)
 		        			}
 		        		}
@@ -41,13 +43,16 @@ define(
 	        }
 
 	        pt.addEvent=function(phase, cb, id=null){
-	        	i=0;
+	        	var i=0;
 	        	while (i<pt.triggerList.length) {
 	        		if (phase > pt.triggerList[i].phase){
 	        			i+=1;
+	    			} else {
+	    				break;
 	    			}
 	    		}
 	    		pt.triggerList.splice(i, 0, {"phase": phase, "cb" : cb, "id" : id});
+	    		return;
 	    	}
 
 	    	pt.resetlastphase=function(phase){
@@ -58,8 +63,9 @@ define(
 
 	    	console.log('phasetrigger here ');
 	    	
-	    	for (i=0;i<events.length;i++){
-	    		pt.addEvent(events[i].phase, events[i].cb, events[i].id)
+	    	for (var i=0;i<events.length;i++){
+	    		pt.addEvent(events[i].phase, events[i].cb, events[i].id);
+	    		console.log("added event with id = " + events[i].id)
 	    	}
 
 	    	if (auto){
