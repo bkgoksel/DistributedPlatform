@@ -101,7 +101,15 @@ require(
 					} else {
 					   console.log("orientation NOT supported :-(");
 					}
+/*
+screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
 
+if (screen.lockOrientationUniversal("landscape-primary")) {
+  // orientation was locked
+} else {
+  // orientation lock failed
+}
+*/
  					//++++++++++++++++++++++++++++++++++++++++++
 
  					sndsLoaded=true;

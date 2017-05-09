@@ -31,7 +31,7 @@ if (mode=="production") {
     var options = {
       key: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/privkey.pem'),
       cert: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/fullchain.pem'),
-      requestCert: true,
+      // requestCert: true,  // This requests a CLIENT cert - we don't want that.
       rejectUnauthorized: false
     };
 

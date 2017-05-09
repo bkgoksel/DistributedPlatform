@@ -57,7 +57,7 @@ define(
 					snds[i].setParamNorm("Gain", .8*eGain);
 				break;
 				case sm.LA_2AH :
-					snds[i].setParamNorm("Gain", .7*eGain);
+					snds[i].setParamNorm("Gain", .4*eGain);
 				break;
 			}
 
