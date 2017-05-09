@@ -84,32 +84,36 @@ require(
 				    } else 				    {
 				    	console.log("no requestfullscreen");
 				    }
-
+					/*
 				    setTimeout(function(){
 				    	if (!da.webkitCurrentFullScreenElement) {
 				    			console.log("your element is not in full screen!");
 				    	} else {
 				    		console.log("your element seems to be in full screen");
 				    	}}, 2000);
+				    */
 				    //++++++++++++++++++++++++++++++++++++++++++
 
-				    //var lockOrientation = screen.lock || screen.mozLockOrientation || screen.msLockOrientation;
-
 					if ('orientation' in screen) {
-					   console.log("orientation should be supported");
+					   console.log("orientation should be supported 1");
 					   screen.orientation.lock("portrait-primary");
 					} else {
-					   console.log("orientation NOT supported :-(");
+						var screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
+						if (screen.lockOrientationUniversal){
+							 console.log("orientation should be supported 2");
+							if (screen.lockOrientationUniversal("portrait-primary")) {
+							  // orientation was locked
+							} else {
+							  console.log("orientation unsuccessful :-(");
+							}
+						} else {
+							  console.log("orientation NOT supported :-(");
+						}
 					}
-/*
-screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
 
-if (screen.lockOrientationUniversal("landscape-primary")) {
-  // orientation was locked
-} else {
-  // orientation lock failed
-}
-*/
+					
+					
+
  					//++++++++++++++++++++++++++++++++++++++++++
 
  					sndsLoaded=true;
