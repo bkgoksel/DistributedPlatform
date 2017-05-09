@@ -65,8 +65,6 @@ define(
             // Create a new volume meter and connect it.
             va.meter = meter.createAudioMeter(va.audioContext, .3, .95, 750);
             va.mediaStreamSource.connect(va.meter);
-            msgbox.value="got meter(?)!"
-
             // kick off the visual updating
             va.pollLoop();
         }

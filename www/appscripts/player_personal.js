@@ -13,7 +13,7 @@ define(
 			//"jsaSound/jsaModels/dong",
 			"jsaSound/jsaModels/CrowdLaughingLoop",	
 			//"../slorksounds/MyRisset",			
-			"jsaSound/jsaModels/Leonardo/jsaDistributedDrone2Leonardo",
+			"jsaSound/jsaModels/Leonardo/jsaDistributedDrone2",
 			"jsaSound/jsaModels/Ame/RandomBirdSample",
 			"../slorksounds/slorkMonster",
 
@@ -97,7 +97,7 @@ define(
 					snds[sm.DRONE].setParamNorm("play", 1);
 					setTimeout(function(){
 						snds[sm.DRONE].setParamNorm("play", 0);
-					}, 1200)
+					}, 1600)
 					break;
 
 				case mvt["SLORKMONSTER"] :
