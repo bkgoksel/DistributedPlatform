@@ -42,22 +42,22 @@ define(
 		var setSndGain=function(i, eGain){
 			switch(i) {
 				case sm.CrowdLaughingLoop :
-					snd[i].setParamNorm("Gain", .4*eGain);
+					snds[i].setParamNorm("Gain", .4*eGain);
 				break;
 				case sm.DRONE :
-					snd[i].setParamNorm("Gain", 1.2*eGain);
+					snds[i].setParamNorm("Gain", 1.2*eGain);
 				break;
 				case sm.BIRDS :
-					snd[i].setParamNorm("Gain", .8*eGain);
+					snds[i].setParamNorm("Gain", .8*eGain);
 				break;
 				case sm.SLORKMONSTER :
-					snd[i].setParamNorm("Gain", .8*eGain);
+					snds[i].setParamNorm("Gain", .8*eGain);
 				break;
 				case sm.LA_AH :
-					snd[i].setParamNorm("Gain", .8*eGain);
+					snds[i].setParamNorm("Gain", .8*eGain);
 				break;
 				case sm.LA_2AH :
-					snd[i].setParamNorm("Gain", .7*eGain);
+					snds[i].setParamNorm("Gain", .7*eGain);
 				break;
 			}
 
