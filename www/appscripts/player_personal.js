@@ -108,7 +108,7 @@ define(
 
 		setPersonalGain=function(val){
 			m_personalGain=val;
-			snds && msgbox.value="pg = " + val
+			msgbox.value="pg = " + val
 			for (i=0;i<sndlist.length;i++){
 				snds[i] && setSndGain(i, m_groupGain*m_personalGain);
 			}
