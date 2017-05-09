@@ -108,7 +108,7 @@ define(
 
 		setPersonalGain=function(val){
 			m_personalGain=val;
-			msgbox.value="pg = " + val
+			snds && msgbox.value="pg = " + val
 			for (i=0;i<sndlist.length;i++){
 				snds[i] && setSndGain(i, m_groupGain*m_personalGain);
 			}
@@ -157,7 +157,7 @@ define(
 			if (i_pname==="Detune"){ // [-1,1]
 				// map [-.5, .5] to 
 				//snds[sm.DRONE].setParam("Detune", i_val);
-				setPersonalGain(Math.max(Math.min(utils.map(-.5, .5, 0, 1),1),0))
+				setPersonalGain(Math.max(Math.min(utils.map(-.5, .5, 0, 1, i_val),1),0))
 			}			
 		}
 
