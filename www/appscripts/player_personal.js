@@ -41,22 +41,22 @@ define(
 		// one place to control the relative gains of all the sounds
 		var setSndGain=function(i, eGain){
 			switch(i) {
-				case "CrowdLaughingLoop" :
+				case sm.CrowdLaughingLoop :
 					snd[i].setParamNorm("Gain", .4*eGain);
 				break;
-				case "DRONE" :
+				case sm.DRONE :
 					snd[i].setParamNorm("Gain", 1.2*eGain);
 				break;
-				case "BIRDS" :
+				case sm.BIRDS :
 					snd[i].setParamNorm("Gain", .8*eGain);
 				break;
-				case "SLORKMONSTER" :
+				case sm.SLORKMONSTER :
 					snd[i].setParamNorm("Gain", .8*eGain);
 				break;
-				case "LA_AH" :
+				case sm.LA_AH :
 					snd[i].setParamNorm("Gain", .8*eGain);
 				break;
-				case "LA_2AH" :
+				case sm.LA_2AH :
 					snd[i].setParamNorm("Gain", .7*eGain);
 				break;
 			}
@@ -108,8 +108,10 @@ define(
 
 		setPersonalGain=function(val){
 			m_personalGain=val;
-			msgbox.value="pg = " + val;
 			for (i=0;i<sndlist.length;i++){
+				if (i == sm.CrowdLaughingLoop){
+					msgbox.value="crowd gain  to " val;
+				}
 				snds[i] && setSndGain(i, m_groupGain*m_personalGain);
 			}
 		}
