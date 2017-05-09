@@ -45,7 +45,7 @@ define(
 					snds[i].setParamNorm("Gain", .4*eGain);
 				break;
 				case sm.DRONE :
-					snds[i].setParamNorm("Gain", 2.5*eGain);
+					snds[i].setParamNorm("Gain", 1.5*eGain);
 				break;
 				case sm.BIRDS :
 					snds[i].setParamNorm("Gain", .8*eGain);
@@ -157,7 +157,13 @@ define(
 				// map [-.5, .5] to 
 				//snds[sm.DRONE].setParam("Detune", i_val);
 				setPersonalGain(Math.max(Math.min(utils.map(-.5, .5, 0, 1, i_val),1),0))
-			}			
+			}	
+			if (i_pname==="Roll"){ // [-1,1]
+				// map [-.5, .5] to 
+				//snds[sm.DRONE].setParam("Detune", i_val);
+				//setPersonalGain(Math.max(Math.min(utils.map(-.5, .5, 0, 1, i_val),1),0))
+			}	
+
 		}
 
 		var sndParams = { // these are piece-specific
