@@ -98,7 +98,7 @@ require(
 					   console.log("orientation should be supported 1");
 					   screen.orientation.lock("portrait-primary");
 					} else {
-						var screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
+						screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
 						if (screen.lockOrientationUniversal){
 							 console.log("orientation should be supported 2");
 							if (screen.lockOrientationUniversal("portrait-primary")) {
