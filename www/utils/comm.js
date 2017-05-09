@@ -4,6 +4,10 @@ define(
 
 		return function(i_onOpen){
 
+			var msgbox = document.getElementById("msg");
+        	msgbox.value="loading comm";
+
+
 			var host;
 			if ((window.document.location.hostname).includes("sonicthings.org")){
 				host="sonicthings.org:9999";//+window.document.location.hostname;

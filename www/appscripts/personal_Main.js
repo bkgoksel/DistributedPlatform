@@ -26,6 +26,8 @@ require(
 	function (require,  va, commFactory, utils,  config, personalConfig, personalDisplay,  player) {
 
 		
+			var msgbox = document.getElementById("msg");
+			msgbox.value="loading main";
 
 			var comm=commFactory(function(){
 				console.log("OK comms ready for action!");
@@ -34,8 +36,6 @@ require(
 			var m_ty = document.getElementById("ty");
 			var m_troll = document.getElementById("troll");
 
-			var msgbox = document.getElementById("msg");
-			msgbox.value="loading main";
 
 			var sndsLoaded=false;
 

@@ -10,12 +10,14 @@ define(
   ["jsaSound/jsaModels/jsaMp3"],
   function(sndFactory){
 
-  var msgbox = document.getElementById("msg");
+    var msgbox = document.getElementById("msg");
+    msgbox.value="loading personalConfig";
+
   //msgbox.value="configuring";
 
-      var reply_place = document.createElement("div");
-      reply_place.id = "overlay";
-      var inner_div = document.createElement("div"), button_close = document.createElement("button");
+    var reply_place = document.createElement("div");
+    reply_place.id = "overlay";
+    var inner_div = document.createElement("div"), button_close = document.createElement("button");
 
 
     var submit_btn = document.createElement("input");

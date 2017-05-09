@@ -2,11 +2,13 @@ define(
     ["config", "meter"],
     function (config) {
 
+        var msgbox = document.getElementById("msg");
+        msgbox.value="loading va";
+
         function didntGetStream() {
             alert('Stream generation failed.');
         }
 
-        var msgbox = document.getElementById("msg");
 
         va = {}
 
