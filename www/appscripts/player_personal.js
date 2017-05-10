@@ -37,7 +37,7 @@ define(
 			"SLORKMONSTER" : 3,
 			"LA_AH" : 4,
 			"LA_2AH" : 5,
-			"GRANNYBABBLE"
+			"GRANNYBABBLE" : 6
 		}
 
 		// one place to control the relative gains of all the sounds
