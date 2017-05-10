@@ -398,7 +398,7 @@ define(
 						snds[sm.GRANNYBABBLE].setParam("Step Size", .2 + .25*Math.random());
 						snds[sm.GRANNYBABBLE].setParam("Grain Play Interval", .25 + .5*Math.random()); // audience controllable
 						snds[sm.GRANNYBABBLE].setParam("play", 1);
-					},3000*Math.random();
+					},3000*Math.random());
 					break;
 
 					case mvt.ALLOFF:
