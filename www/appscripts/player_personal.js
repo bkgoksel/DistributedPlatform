@@ -53,7 +53,7 @@ define(
 					snds[i].setParamNorm("Gain", .8*eGain);
 				break;
 				case sm.SLORKMONSTER :
-					snds[i].setParamNorm("Gain", .8*eGain);
+					snds[i].setParamNorm("Gain", 1.2*eGain);
 				break;
 				case sm.LA_AH :
 					snds[i].setParamNorm("Gain", .8*eGain);
@@ -74,10 +74,10 @@ define(
 		var mvt = {
 			"CROWD" : 0,
 			"BIRDS" : 1,
-			"DRONE" : 2,
-			"SLORKMONSTER" : 3,
-			"LA_AH" : 4, 
 			"BABBLE" : 5,
+			"LA_AH" : 4,
+			"SLORKMONSTER" : 3,
+			"DRONE" : 2,
 			"ALLOFF" : 6
 
 		}
@@ -354,7 +354,7 @@ define(
 								cb: laplay,
 								id: 0} // even/odd role will be used to decide which sound to play
 							], 40, true);
-						}, 4000*Math.random());
+						}, 7000*Math.random());
 					} else {
 						setTimeout(function(){
 							basePhase=2.*Math.PI*Math.random();
@@ -370,7 +370,7 @@ define(
 								id: 1}
 
 							], 40, true);
-						}, 4000+4000*Math.random());
+						}, 7000+6000*Math.random());
 					}
 
 					break;

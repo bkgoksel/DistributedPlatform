@@ -25,8 +25,8 @@ define(
       //alert("click sound loaded");
       submit_btn.type = "button";
       submit_btn.className = "submit";
-      submit_btn.value = "Submit";
-      legend.innerHTML = "States of Diffusion @ ACM Multimedia";
+      submit_btn.value = "OK!";
+      legend.innerHTML = "SlOrk - VocalTrak ";
       //form.appendChild(submit_btn);
       inner_div.appendChild(submit_btn);
       //msgbox.value="click resource loaded";
