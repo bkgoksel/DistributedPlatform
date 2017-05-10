@@ -64,26 +64,7 @@ define(
 
     		}
 
-    		document.addEventListener("touchstart", function(e){
-    			e.preventDefault();
-    			var touches = e.changedTouches;
-				console.log('mouse pos ' + touches[0].pageX + ", " + touches[0].pageY)
-				m_msg.value='mouse pos ' + touches[0].pageX + ", " + touches[0].pageY
-			});
-			document.addEventListener("touchmove", function(e){
-				e.preventDefault();
-				var touches = e.changedTouches;
-				console.log('mouse pos ' + touches[0].pageX + ", " + touches[0].pageY)
-				m_msg.value='mouse pos ' + touches[0].pageX + ", " + touches[0].pageY
-			});
-    		document.addEventListener("mousedown", function(e){
-				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
-				m_msg.value='mouse pos ' + e.screenX + ", " + e.screenY
-			});
-			document.addEventListener("mousemove", function(e){
-				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
-				m_msg.value='mouse pos ' + e.screenX + ", " + e.screenY
-			});
+
     		/*
     		playButton.addEventListener("mousedown", function(){
 				playButton.style.fill="blue";
