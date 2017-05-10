@@ -19,6 +19,7 @@ define(
 
 			"jsaSound/jsaModels/LA_Ah",
 			"jsaSound/jsaModels/LA_2Ah",
+			"../slorksounds/GrannyBabble",
 			//"jsaSound/jsaModels/jsaFMnative2",
 			//"jsaSound/jsaModels/SoD/Dragster",
 			//"jsaSound/jsaModels/peeperSyllable",
@@ -35,7 +36,8 @@ define(
 			"BIRDS" : 2,
 			"SLORKMONSTER" : 3,
 			"LA_AH" : 4,
-			"LA_2AH" : 5
+			"LA_2AH" : 5,
+			"GRANNYBABBLE"
 		}
 
 		// one place to control the relative gains of all the sounds
@@ -59,6 +61,10 @@ define(
 				case sm.LA_2AH :
 					snds[i].setParamNorm("Gain", .4*eGain);
 				break;
+				case sm.GRANNYBABBLE :
+					snds[i].setParamNorm("Gain", .8*eGain);
+				break;
+
 			}
 
 		}
@@ -70,7 +76,8 @@ define(
 			"BIRDS" : 1,
 			"DRONE" : 2,
 			"SLORKMONSTER" : 3,
-			"LA_AH" : 4
+			"LA_AH" : 4, 
+			"BABBLE" : 5
 		}
 
 		var m_playingP=false;
@@ -363,10 +370,6 @@ define(
 					break;
 
 				case mvt.DRONE:
-
-					//snds[sm.DRONE].setParamNorm("Gain", .5);
-					//snds[sm.DRONE].setParamNorm("play", 1);
-
 					switch (m_roles){
 						case 1:
 							snds[sm.DRONE].setParam("Number of Generators", 3);
@@ -381,7 +384,10 @@ define(
 						break;
 					}
 
+					break;
 
+				case mvt.BABBLE:
+					snds[sm.GrannyBabble].setParam("play", 1);
 					break;
 
 
