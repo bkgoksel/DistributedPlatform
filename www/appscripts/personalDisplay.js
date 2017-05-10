@@ -65,12 +65,16 @@ define(
     		}
 
     		document.addEventListener("touchstart", function(e){
-				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
-				m_msg.value='mouse pos ' + e.screenX + ", " + e.screenY
+    			e.preventDefault();
+    			var touches = e.changedTouches;
+				console.log('mouse pos ' + touches[0].pageX + ", " + touches[0].pageY)
+				m_msg.value='mouse pos ' + touches[0].pageX + ", " + touches[0].pageY
 			});
 			document.addEventListener("touchmove", function(e){
-				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
-				m_msg.value='mouse pos ' + e.screenX + ", " + e.screenY
+				e.preventDefault();
+				var touches = e.changedTouches;
+				console.log('mouse pos ' + touches[0].pageX + ", " + touches[0].pageY)
+				m_msg.value='mouse pos ' + touches[0].pageX + ", " + touches[0].pageY
 			});
     		document.addEventListener("mousedown", function(e){
 				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
