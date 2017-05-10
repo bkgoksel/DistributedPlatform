@@ -29,31 +29,36 @@ define(
             va.cb=cb;
             msgbox.value="init VA";
 
-             navigator.mediaDevices.getUserMedia = 
-                navigator.mediaDevices.getUserMedia ||
-                navigator.mediaDevices.webkitGetUserMedia ||
-                navigator.mediaDevices.mozGetUserMedia;
+            if(navigator && navigator.mediaDevices){
+                 navigator.mediaDevices.getUserMedia = 
+                    navigator.mediaDevices.getUserMedia ||
+                    navigator.mediaDevices.webkitGetUserMedia ||
+                    navigator.mediaDevices.mozGetUserMedia;
+            
 
-            if (! navigator.mediaDevices.getUserMedia){
-                alert('No voice activation availabe from what is probably an iOS device')
+                if (! navigator.mediaDevices.getUserMedia){
+                    alert('No voice activation availabe from what is probably an iOS device')
+                } else {
+                // ask for an audio input
+                    navigator.mediaDevices.getUserMedia(
+                    {
+                        audio: true
+                        /*{
+                                "googEchoCancellation": "false",
+                                "googAutoGainControl": "false",
+                                "googNoiseSuppression": "false",
+                                "googHighpassFilter": "false"
+
+                        },*/
+                    }).then(function(stream){
+                        va.gotStream(stream);
+                    }).catch(function(err){
+                        alert(err);
+                        didntGetStream();
+                    });
+                }
             } else {
-            // ask for an audio input
-                navigator.mediaDevices.getUserMedia(
-                {
-                    audio: true
-                    /*{
-                            "googEchoCancellation": "false",
-                            "googAutoGainControl": "false",
-                            "googNoiseSuppression": "false",
-                            "googHighpassFilter": "false"
-
-                    },*/
-                }).then(function(stream){
-                    va.gotStream(stream);
-                }).catch(function(err){
-                    alert(err);
-                    didntGetStream();
-                });
+                didntGetStream();
             }
         }
         
