@@ -3,7 +3,7 @@ define(
     function (config) {
 
         var msgbox = document.getElementById("msg");
-        msgbox.value="loading va";
+        //msgbox.value="loading va";
 
         function didntGetStream() {
             alert('Stream generation failed.');
@@ -27,7 +27,7 @@ define(
             //va.level=level;
             //va.dur=dur;
             va.cb=cb;
-            msgbox.value="init VA";
+            //msgbox.value="init VA";
 
             if(navigator && navigator.mediaDevices){
                  navigator.mediaDevices.getUserMedia = 

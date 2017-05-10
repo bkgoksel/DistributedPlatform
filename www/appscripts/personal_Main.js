@@ -27,7 +27,6 @@ require(
 
 		
 			var msgbox = document.getElementById("msg");
-			msgbox.value="loading main";
 
 			document.getElementById('voiceID').style.display='none';
 			
@@ -144,7 +143,6 @@ require(
 			var m_tickCount=0;
 
 			// reduce GUI burden // var k_timeDisplayElm=window.document.getElementById("timeDisplayDiv");
-			msgbox.value="get pd";
 			var pd = personalDisplay(document.getElementById("svg_area"));
 			//document.getElementById("svg_area").innerHTML="Hellow World"
 
@@ -182,7 +180,7 @@ require(
 				//pong.call(this, data[1]);
 				myID=data[0];
 				console.log("Server acknowledged, assigned me this.id = " + myID);
-				msgbox.value = "my ID is " + myID;
+				//msgbox.value = "my ID is " + myID;
 
 				personalConfig.set("serverAck");
 				player.loadSounds(function(){
@@ -226,7 +224,7 @@ require(
 			// Just make a color for displaying future events from the client with the src ID
 			comm.registerCallback('mvtPhase', function(data, src) {
 				console.log("message: Mvt : " + data[0] + " , Phase " + data[1]);
-				msgbox.value="mvtPhase";
+				//msgbox.value="mvtPhase";
 				player.setMvtPhase(data[0], data[1]);
 			});
 
@@ -235,7 +233,7 @@ require(
 			comm.registerCallback('setGain', function(data, src) {
 				console.log("message: gain : " + data[0]);
 				msgbox.value="Gain " + data[0];
-				player.setGain(data[0]);
+				//player.setGain(data[0]);
 			});
 
 

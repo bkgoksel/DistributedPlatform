@@ -163,7 +163,7 @@ define(
 				snds[sm.DRONE].setParam("First Note Number", i_val);
 			}
 			if (i_pname==="Detune"){ // [-1,1]
-				msgbox.value="Pitch: " + i_val;
+				//msgbox.value="Pitch: " + i_val;
 				// map [-.5, .5] to 
 				//snds[sm.DRONE].setParam("Detune", i_val);
 				setPersonalGain(Math.max(Math.min(utils.map(-.5, .5, 0, 1, i_val),1),0))
@@ -312,7 +312,7 @@ define(
 		var fcount=0;
 		var temp;
 		IPlayer.setMvtPhase=function(i_mvt,i_mvtDur=999999){
-			msgbox.value="mvt " + i_mvt + ", dur = " + i_mvtDur;
+			//msgbox.value="mvt " + i_mvt + ", dur = " + i_mvtDur;
 			if (! m_soundsLoaded) {
 				fcount++
 				msgbox.value="Sounds Not Loaded!! " + fcount;
@@ -365,7 +365,7 @@ define(
 								cb: laplay,
 								id: 0} // even/odd role will be used to decide which sound to play
 							], 40, true);
-						}, 7000*Math.random());
+						}, 6000*Math.random());
 					} else {
 						setTimeout(function(){
 							snds[sm.LA_AH].baseRPS=1;

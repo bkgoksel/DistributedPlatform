@@ -177,7 +177,6 @@ define(
 				
 				case mvt.GRANNYVOICE:
 					m_myMicroPlayPhase=.9;
-					msgbox.value="grannyvoice" + snds[sm.grannyvoice];
 					snds[sm.grannyvoice].setParam("play", 1);
 					snds[sm.grannyvoice].setParamNorm("Gain", .35);
 					break;
