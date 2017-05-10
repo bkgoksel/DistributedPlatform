@@ -64,11 +64,13 @@ define(
 
     		}
 
-    		document.addEventListener("mousedown", function(e){
+    		document.addEventListener("touchstart", function(e){
 				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
+				m_msg.value='mouse pos ' + e.screenX + ", " + e.screenY
 			});
-			document.addEventListener("mousemove", function(e){
+			document.addEventListener("touchmove", function(e){
 				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
+				m_msg.value='mouse pos ' + e.screenX + ", " + e.screenY
 			});
     		/*
     		playButton.addEventListener("mousedown", function(){
