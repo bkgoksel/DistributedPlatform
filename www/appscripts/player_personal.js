@@ -288,7 +288,7 @@ define(
 		var m_myMicroPlayPhase=0;
 		var m_myMicroStopPhase=.7;
 
-		stopAllSounds()=function(){
+		var stopAllSounds=function(){
 			for (var i = 0; i<k_numSnds; i++){
 				snds[i] && snds[i].release();
 			}
