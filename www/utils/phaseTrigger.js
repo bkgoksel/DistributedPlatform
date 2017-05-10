@@ -21,6 +21,9 @@ define(
 	    		clearInterval(timerID)
 	    	}
 
+	    	pt.setRPS(i_rps){
+				rpsMS=i_rps/1000.;
+	    	}
 
 	        pt.tick=function(phase){
 	        	if ((phase > pt.lastTickPhase) || ((pt.lastTickPhase-phase) > 0)) { // then were stricly going forward}

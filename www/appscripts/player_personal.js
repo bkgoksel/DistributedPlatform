@@ -168,9 +168,14 @@ define(
 				setPersonalGain(Math.max(Math.min(utils.map(-.5, .5, 0, 1, i_val),1),0))
 			}	
 			if (i_pname==="Roll"){ // [-1,1]
-				// map [-.5, .5] to 
-				//snds[sm.DRONE].setParam("Detune", i_val);
-				//setPersonalGain(Math.max(Math.min(utils.map(-.5, .5, 0, 1, i_val),1),0))
+				msgbox.value=i_val;
+				switch(m_currentMvt){
+					case mvt.LA_AH :
+							snds[sm.LA_AH].ptrigger.setRPS(snds[sm.LA_AH].baseRPS)
+						break;
+					
+					default:
+						break;
 			}	
 
 		}
@@ -352,7 +357,8 @@ define(
 
 					if ((m_role%2)==0){
 						setTimeout(function(){
-							snds[sm.LA_AH].ptrigger = phaseTrigger(0,2,
+							snds[sm.LA_AH].baseRPS=2;
+							snds[sm.LA_AH].ptrigger = phaseTrigger(0,snds[sm.LA_AH].baseRPS,
 							[{phase : 2*Math.PI*Math.random(),
 								cb: laplay,
 								id: 0} // even/odd role will be used to decide which sound to play
@@ -360,8 +366,9 @@ define(
 						}, 7000*Math.random());
 					} else {
 						setTimeout(function(){
+							snds[sm.LA_AH].baseRPS=1;
 							basePhase=2.*Math.PI*Math.random();
-							snds[sm.LA_2AH].ptrigger = phaseTrigger(0,1,
+							snds[sm.LA_2AH].ptrigger = phaseTrigger(0,snds[sm.LA_AH].baseRPS,
 							[{phase : basePhase,
 								cb: laplay,
 								id: 1}, // even/odd role will be used to decide which sound to play
