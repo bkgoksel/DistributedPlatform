@@ -169,7 +169,7 @@ define(
 				setPersonalGain(Math.max(Math.min(utils.map(-.5, .5, 0, 1, i_val),1),0))
 			}	
 			if (i_pname==="Roll"){ // [-1,1]
-				msgbox.value="Roll : " + i_val;
+				//msgbox.value="Roll : " + i_val;
 				switch(m_currentMvt){
 					case mvt.LA_AH :
 							//snds[sm.LA_AH].ptrigger.setRPS((1+.1*i_val)*snds[sm.LA_AH].baseRPS);
