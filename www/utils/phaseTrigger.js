@@ -21,7 +21,7 @@ define(
 	    		clearInterval(timerID)
 	    	}
 
-	    	pt.setRPS(i_rps){
+	    	pt.setRPS=function(i_rps){
 				rpsMS=i_rps/1000.;
 	    	}
 
