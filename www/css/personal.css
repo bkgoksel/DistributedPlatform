@@ -77,7 +77,8 @@ body{
 }
 
 #voiceID{
-    color: red;
+    color: white;
+    background-color: red;
     float: right;
     font-size: 200%;
 }
