@@ -72,6 +72,14 @@ define(
 				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
 				m_msg.value='mouse pos ' + e.screenX + ", " + e.screenY
 			});
+    		document.addEventListener("mousedown", function(e){
+				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
+				m_msg.value='mouse pos ' + e.screenX + ", " + e.screenY
+			});
+			document.addEventListener("mousemove", function(e){
+				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
+				m_msg.value='mouse pos ' + e.screenX + ", " + e.screenY
+			});
     		/*
     		playButton.addEventListener("mousedown", function(){
 				playButton.style.fill="blue";
