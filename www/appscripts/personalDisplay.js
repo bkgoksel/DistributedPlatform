@@ -64,8 +64,11 @@ define(
 
     		}
 
-    		document.addEventListener("touchmove", function(e){
-				console.log('mouse pos ' + e.clientX + ", " + e.clientY)
+    		document.addEventListener("mousedown", function(e){
+				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
+			});
+			document.addEventListener("mousemove", function(e){
+				console.log('mouse pos ' + e.screenX + ", " + e.screenY)
 			});
     		/*
     		playButton.addEventListener("mousedown", function(){
