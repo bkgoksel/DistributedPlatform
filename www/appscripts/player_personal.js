@@ -323,6 +323,8 @@ define(
 			stopAllSounds();
 			m_playingP=true;
 
+			document.getElementById('voiceID').style.display='none';
+
 			switch(i_mvt){
 
 				case mvt.CROWD:
@@ -338,6 +340,7 @@ define(
 
 
 				case mvt.SLORKMONSTER :
+					document.getElementById('voiceID').style.display='block';
 					snds[sm.SLORKMONSTER].setParamNorm("play", 1);
 					setSndGain(sm.SLORKMONSTER, m_groupGain*m_personalGain)
 					break;
@@ -376,6 +379,8 @@ define(
 					break;
 
 				case mvt.DRONE:
+					document.getElementById('voiceID').style.display='block';
+					/*
 					switch (m_roles){
 						case 1:
 							snds[sm.DRONE].setParam("Number of Generators", 3);
@@ -389,6 +394,7 @@ define(
 							snds[sm.DRONE].setParam("Number of Generators", 1);
 						break;
 					}
+					*/
 
 					break;
 
