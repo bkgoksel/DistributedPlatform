@@ -387,7 +387,7 @@ define(
 					break;
 
 				case mvt.BABBLE:
-					snds[sm.GrannyBabble].setParam("play", 1);
+					snds[sm.GRANNYBABBLE].setParam("play", 1);
 					break;
 
 
