@@ -63,6 +63,10 @@ define(
 				playText.setAttributeNS(null,"y",iy );
 
     		}
+
+    		document.addEventListener("touchmove", function(e){
+				console.log('mouse pos ' + e.clientX + ", " + e.clientY)
+			});
     		/*
     		playButton.addEventListener("mousedown", function(){
 				playButton.style.fill="blue";
