@@ -76,3 +76,9 @@ body{
      float: right;
 }
 
+#voiceID{
+    color: red;
+    float: right;
+    font-size: 200%;
+}
+
