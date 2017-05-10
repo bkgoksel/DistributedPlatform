@@ -290,8 +290,7 @@ require(
 					pd.setAngle(m_eventGamma);
 					if (sndsLoaded){
 						player.setSndParam("Detune", m_eventBeta/90);
-						msgbox.value="gamma " + m_eventGamma;
-						player.setSndParam("Roll", m_eventGamma);
+						player.setSndParam("Roll", m_eventGamma/90);
 					}
 					
 					/*
