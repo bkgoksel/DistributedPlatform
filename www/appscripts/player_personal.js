@@ -288,17 +288,19 @@ define(
 		var m_myMicroPlayPhase=0;
 		var m_myMicroStopPhase=.7;
 
-		IPlayer.allOff=function(){
+		stopAllSounds()=function(){
 			for (var i = 0; i<k_numSnds; i++){
 				snds[i] && snds[i].release();
 			}
 			IPlayer.stopBirds();
 			stopLA();
 			m_playingP=false;
-			IPlayer.setMvtPhase(mvt.ALLOFF)
 
 		}
 
+		IPlayer.allOff=function(){
+			IPlayer.setMvtPhase(mvt.ALLOFF);
+		}
 
 		var fcount=0;
 		var temp;
@@ -318,7 +320,7 @@ define(
 			m_currentMvt = i_mvt;
 
 			//console.log("----------------------------play mvt " + i_mvt)
-			IPlayer.allOff();
+			stopAllSounds();
 			m_playingP=true;
 
 			switch(i_mvt){
