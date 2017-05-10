@@ -26,7 +26,7 @@ define(
       submit_btn.type = "button";
       submit_btn.className = "submit";
       submit_btn.value = "OK!";
-      legend.innerHTML = "SlOrk - VocalTrak ";
+      legend.innerHTML = "SLOrk - VocalTrak ";
       //form.appendChild(submit_btn);
       inner_div.appendChild(submit_btn);
       //msgbox.value="click resource loaded";
@@ -76,7 +76,7 @@ define(
    
       var legend = document.createElement("legend");
       legend.id="legend";
-      legend.innerHTML = "States of Diffusion @ ACM Multimedia<br> Loading ...";
+      legend.innerHTML = "   SLOrk - VocalTrak    <br> Loading ......";
       inner_div.appendChild(legend);
 
       /*
