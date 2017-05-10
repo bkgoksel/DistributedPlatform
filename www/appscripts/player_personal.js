@@ -176,6 +176,7 @@ define(
 					
 					default:
 						break;
+					}
 			}	
 
 		}
