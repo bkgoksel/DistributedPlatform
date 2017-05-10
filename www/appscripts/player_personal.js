@@ -163,12 +163,13 @@ define(
 				snds[sm.DRONE].setParam("First Note Number", i_val);
 			}
 			if (i_pname==="Detune"){ // [-1,1]
+				msgbox.value="Pitch: " + i_val;
 				// map [-.5, .5] to 
 				//snds[sm.DRONE].setParam("Detune", i_val);
 				setPersonalGain(Math.max(Math.min(utils.map(-.5, .5, 0, 1, i_val),1),0))
 			}	
 			if (i_pname==="Roll"){ // [-1,1]
-				msgbox.value=i_val;
+				msgbox.value="Roll : " + i_val;
 				switch(m_currentMvt){
 					case mvt.LA_AH :
 							snds[sm.LA_AH].ptrigger.setRPS(snds[sm.LA_AH].baseRPS)
