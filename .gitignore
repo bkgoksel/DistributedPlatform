@@ -6,6 +6,8 @@ RUN_Diffusion*
 node_modules
 *.sfk
 nohup.out
+**._*
+
 
 
 

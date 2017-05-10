@@ -77,7 +77,9 @@ define(
 			"DRONE" : 2,
 			"SLORKMONSTER" : 3,
 			"LA_AH" : 4, 
-			"BABBLE" : 5
+			"BABBLE" : 5,
+			"ALLOFF" : 6
+
 		}
 
 		var m_playingP=false;
@@ -293,6 +295,8 @@ define(
 			IPlayer.stopBirds();
 			stopLA();
 			m_playingP=false;
+			IPlayer.setMvtPhase(mvt.ALLOFF)
+
 		}
 
 
@@ -387,8 +391,14 @@ define(
 					break;
 
 				case mvt.BABBLE:
+					snds[sm.GRANNYBABBLE].setParam("Pitch", -.1 + .2*Math.random());
+					snds[sm.GRANNYBABBLE].setParam("Grain Play Interval", .25 + .4*Math.random()); // audience controllable
 					snds[sm.GRANNYBABBLE].setParam("play", 1);
 					break;
+
+					case mvt.ALLOFF:
+						// just so that no sounds are triggered by other events if we are in this state.
+						break;
 
 
 				default: 
