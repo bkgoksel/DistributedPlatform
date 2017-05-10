@@ -29,6 +29,9 @@ require(
 			var msgbox = document.getElementById("msg");
 			msgbox.value="loading main";
 
+			document.getElementById('voiceID').style.display='none';
+			
+
 			var comm=commFactory(function(){
 				console.log("OK comms ready for action!");
 			});
