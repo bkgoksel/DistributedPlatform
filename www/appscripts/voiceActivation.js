@@ -47,22 +47,26 @@ define(
                         console.log('No voice activation availabe from what is probably an iOS device')
                     } else {
                 // ask for an audio input
-                        navigator.mediaDevices.getUserMedia(
-                        {
-                            audio: true
-                            /*{
-                                    "googEchoCancellation": "false",
-                                    "googAutoGainControl": "false",
-                                    "googNoiseSuppression": "false",
-                                    "googHighpassFilter": "false"
+                        try{
+                            navigator.mediaDevices.getUserMedia(
+                            {
+                                audio: true
+                                /*{
+                                        "googEchoCancellation": "false",
+                                        "googAutoGainControl": "false",
+                                        "googNoiseSuppression": "false",
+                                        "googHighpassFilter": "false"
 
-                            },*/
-                        }).then(function(stream){
-                            va.gotStream(stream);
-                        }).catch(function(err){
-                            //alert(err);
-                            didntGetStream();
-                        });
+                                },*/
+                            }).then(function(stream){
+                                va.gotStream(stream);
+                            }).catch(function(err){
+                                //alert(err);
+                                didntGetStream();
+                            });
+                        }catch(e){
+                            console.log('shouldnt need this catach')
+                        }
                     }
 
                 }else {
