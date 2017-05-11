@@ -144,6 +144,10 @@ define(
 			m_mvt=i_mvt;
 		}
 
+		IPlayer.getMvt=function{
+			return m_mvt;
+		}
+
 		
 		return IPlayer;
     });

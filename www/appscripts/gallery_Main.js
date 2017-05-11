@@ -178,7 +178,7 @@ require(
 
 			// Send info when new user joins (best if we could send to a prticular user!!!!!)
 			comm.sendJSONmsg("setGain", [parseFloat(gainSlider.value)]);
-			comm.sendJSONmsg('mvtPhase', [parseInt(e.currentTarget.value)]);
+			comm.sendJSONmsg('mvtPhase', [player.getMvt()]);
 
 		});
 		//---------------------------------------------------------------------------
