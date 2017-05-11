@@ -33,15 +33,13 @@ define(
             //msgbox.value="init VA";
 
             try {
-            if(navigator && navigator.mediaDevices){
-                 navigator.mediaDevices.getUserMedia = 
-                    navigator.mediaDevices.getUserMedia ||
-                    navigator.mediaDevices.webkitGetUserMedia ||
-                    navigator.mediaDevices.mozGetUserMedia;
-                } 
-            }catch(e){
-                console.log("no dialog box!!")
-            }
+                if(navigator && navigator.mediaDevices){
+                     navigator.mediaDevices.getUserMedia = 
+                        navigator.mediaDevices.getUserMedia ||
+                        navigator.mediaDevices.webkitGetUserMedia ||
+                        navigator.mediaDevices.mozGetUserMedia;
+                    } 
+                
 
                 if (! navigator.mediaDevices.getUserMedia){
                     //alert('No voice activation availabe from what is probably an iOS device')
@@ -65,9 +63,12 @@ define(
                         //alert(err);
                         didntGetStream();
                     });
+                } else {
+                    didntGetStream();
                 }
-            } else {
-                didntGetStream();
+
+            } catch(e){
+                console.log("no dialog box!!")
             }
         }
         
