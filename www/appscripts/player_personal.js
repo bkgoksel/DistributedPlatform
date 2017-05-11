@@ -172,7 +172,7 @@ define(
 				//msgbox.value="Roll : " + i_val;
 				switch(m_currentMvt){
 					case mvt.LA_AH :
-							//snds[sm.LA_AH].ptrigger.setRPS((1+.1*i_val)*snds[sm.LA_AH].baseRPS);
+							snds[sm.LA_AH].ptrigger.setRPS((1+.1*i_val)*snds[sm.LA_AH].baseRPS);
 						break;
 					
 					default:

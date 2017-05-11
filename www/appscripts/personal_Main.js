@@ -232,8 +232,8 @@ require(
 			// Just make a color for displaying future events from the client with the src ID
 			comm.registerCallback('setGain', function(data, src) {
 				console.log("message: gain : " + data[0]);
-				msgbox.value="Gain " + data[0];
-				//player.setGain(data[0]);
+				//msgbox.value="Gain " + data[0];
+				player.setGain(data[0]);
 			});
 
 
@@ -290,7 +290,7 @@ require(
 					pd.setAngle(m_eventGamma);
 					if (sndsLoaded){
 						player.setSndParam("Detune", m_eventBeta/90);
-						//player.setSndParam("Roll", m_eventGamma/90);
+						player.setSndParam("Roll", m_eventGamma/90);
 					}
 					
 					/*
