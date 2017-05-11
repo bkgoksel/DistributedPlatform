@@ -175,6 +175,11 @@ require(
 			console.log("new role : " + data[0] + " of " + data[1]);
 			// display number of participants
 			document.getElementById('participants').value=data[1];
+
+			// Send info when new user joins (best if we could send to a prticular user!!!!!)
+			comm.sendJSONmsg("setGain", [parseFloat(gainSlider.value)]);
+			comm.sendJSONmsg('mvtPhase', [parseInt(e.currentTarget.value)]);
+
 		});
 		//---------------------------------------------------------------------------
 		// called when you join with a list of other member IDs. src is meaningless since it is this client
