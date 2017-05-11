@@ -38,7 +38,8 @@ define(
                     navigator.mediaDevices.getUserMedia ||
                     navigator.mediaDevices.webkitGetUserMedia ||
                     navigator.mediaDevices.mozGetUserMedia;
-            } catch(e){
+                } 
+            }catch(e){
                 console.log("no dialog box!!")
             }
 
