@@ -102,6 +102,7 @@ require(
 
 		mvtButt=function(e){
 			//buttNum=e.
+			setMvtPhase(parseInt(e.currentTarget.value))
 			comm.sendJSONmsg('mvtPhase', [parseInt(e.currentTarget.value)]);
 		}
 		window.document.getElementById("0").addEventListener('click', mvtButt)

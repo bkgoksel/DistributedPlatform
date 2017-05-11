@@ -137,7 +137,7 @@ define(
 
 		var fcount=0;
 		var temp;
-		IPlayer.setMvtPhase=function(i_mvt,i_mvtDur){
+		IPlayer.setMvtPhase=function(i_mvt,i_mvtDur=99999){
 			msgbox.value="mvt " + i_mvt + ", dur = " + i_mvtDur;
 
 							
