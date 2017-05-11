@@ -387,10 +387,11 @@ define(
 					break;
 
 				case mvt.DRONE:
-						snds[sm.DRONE].ptrigger = phaseTrigger(0,2.0*Math.random(),
+						snds[sm.DRONE].ptrigger = phaseTrigger(0,.5,
 						[{phase : 2*Math.PI*Math.random(),
 							cb: function(ph, id){
 								snds[sm.DRONE].setParamNorm("play", 1);
+								console.log('trigger at phase ' + ph)
 								setTimeout(function(){
 									snds[sm.DRONE].setParamNorm("play", 0);
 								}, 1600);
