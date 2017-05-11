@@ -102,11 +102,6 @@ define(
 			console.log('trigger');
 			switch(m_currentMvt){
 				case mvt["DRONE"]:
-					setSndGain(sm.DRONE, m_groupGain*m_personalGain);
-					snds[sm.DRONE].setParamNorm("play", 1);
-					setTimeout(function(){
-						snds[sm.DRONE].setParamNorm("play", 0);
-					}, 1600)
 					break;
 
 				case mvt["SLORKMONSTER"] :
@@ -298,9 +293,13 @@ define(
 		var stopAllSounds=function(){
 			for (var i = 0; i<k_numSnds; i++){
 				snds[i] && snds[i].release();
+				if (snds[i].ptrigger){
+					snds[i].ptrigger.stop();
+				}
 			}
 			IPlayer.stopBirds();
 			stopLA();
+
 			m_playingP=false;
 
 		}
@@ -388,7 +387,18 @@ define(
 					break;
 
 				case mvt.DRONE:
-					document.getElementById('voiceID').style.display='block';
+						snds[sm.DRONE].ptrigger = phaseTrigger(0,2.0*Math.random(),
+						[{phase : 2*Math.PI*Math.random(),
+							cb: function(ph, id){
+								snds[sm.DRONE].setParamNorm("play", 1);
+								setTimeout(function(){
+									snds[sm.DRONE].setParamNorm("play", 0);
+								}, 1600);
+							},
+							id: 0} // even/odd role will be used to decide which sound to play
+						], 40, true);
+
+					//document.getElementById('voiceID').style.display='block';
 					/*
 					switch (m_roles){
 						case 1:

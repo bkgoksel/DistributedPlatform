@@ -3,10 +3,13 @@ define(
     function (config) {
 
         var msgbox = document.getElementById("msg");
+        var va_enabled=true;
         //msgbox.value="loading va";
 
         function didntGetStream() {
-            alert('Stream generation failed.');
+            //alert('Stream generation failed.');
+            console.log("didn't get stream")
+            va_enabled=false;
         }
 
 
@@ -37,7 +40,9 @@ define(
             
 
                 if (! navigator.mediaDevices.getUserMedia){
-                    alert('No voice activation availabe from what is probably an iOS device')
+                    //alert('No voice activation availabe from what is probably an iOS device')
+                    va_enabled=false;
+                    console.log('No voice activation availabe from what is probably an iOS device')
                 } else {
                 // ask for an audio input
                     navigator.mediaDevices.getUserMedia(
@@ -53,7 +58,7 @@ define(
                     }).then(function(stream){
                         va.gotStream(stream);
                     }).catch(function(err){
-                        alert(err);
+                        //alert(err);
                         didntGetStream();
                     });
                 }
@@ -96,7 +101,9 @@ define(
         }
 
         va.quit=function(){
-            va.meter.shutdown()
+            if (va_enabled){
+                va.meter.shutdown()
+            }
         }
 
         return va
