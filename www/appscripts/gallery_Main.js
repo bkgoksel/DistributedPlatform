@@ -8,24 +8,18 @@ require.config({
 			}
 				// hardcoded to read sounds served from jsaSaddVectoround listening on port 8001 (on the same server as the AnticipatoryScore server is running)
 			var sndhost;
-			if ((window.document.location.hostname).includes("sonicthings.org")){
+			//if ((window.document.location.hostname).includes("sonicthings.org")){
+			if (true){
 				sndhost="https://animatedsoundworks.com";//+window.document.location.sndhostname;
 			} else {
 				sndhost="https://mockserver.com:8001"
 			}
-//			if ((window.document.location.sndhostname).includes("animatedsoundworks.com")){
-				//sndhost="https://animatedsoundworks.com";
-//			} else {
-//				var sndhost = "http://"+window.document.location.sndhostname + ":8001";
-//			}
-				//var sndhost = "http://"+"172.23.68.214" + ":8001";
-				//alert("Will look for sounds served from " + sndhost);
 			return (sndhost );
 		})()
 	}
 });
 require(
-	["require",  "../utils/soundSelect", "../utils/comm", "../utils/utils", "../utils/touch2Mouse",   "config", "personalConfig", "galleryDisplay",  "player_Gallery",  "polyfill"],
+	["require",  "../utils/soundSelect", "../utils/comm", "../utils/utils", "../utils/touch2Mouse",   "config", "personalConfig", "galleryDisplay",  "galleryPlayer",  "../utils/polyfill"],
 
 	function (require, soundSelect, commFactory, utils, touch2Mouse,   config, personalConfig, galleryDisplay, player) {
 

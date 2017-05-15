@@ -9,7 +9,8 @@ require.config({
 
 //			if ((window.document.location.hostname).includes("animatedsoundworks.com")){
 			var sndhost;
-			if ((window.document.location.hostname).includes("sonicthings.org")){
+			//if ((window.document.location.hostname).includes("sonicthings.org")){
+			if (true){
 				sndhost="https://animatedsoundworks.com";//+window.document.location.hostname;
 			} else {
 				sndhost="https://mockserver.com:8001"

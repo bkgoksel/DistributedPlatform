@@ -1,5 +1,5 @@
 define(
-    ["config", "../utils/utils", "../utils/phaseTrigger", "lollipop"],
+    ["config", "../utils/utils", "../utils/phaseTrigger", "../utils/lollipop"],
     function (config, utils, phaseTrigger, lollipop) {
 		var static_xmlns = "http://www.w3.org/2000/svg";
 
@@ -17,7 +17,7 @@ define(
     	var bgColor="black";
     	var m_myColor={};
 
-    	var k_numStates=Object.keys(config.mvt).length;
+    	//var k_numStates=Object.keys(config.mvt).length;
 
     	// SVG elements
 		var circ;
@@ -150,14 +150,14 @@ define(
 
 
 		var setStateNumbers = function (){
-			var rangle;
+			//var rangle;
 
-			for (var i=0;i<k_numStates;i++){
+			//for (var i=0;i<k_numStates;i++){
 
-			rangle = -Math.PI/2 + i*2*Math.PI/k_numStates;
-			stateNumbers[i].setAttributeNS(null,"x",referenceCircle.cx + .85*referenceCircle.r*Math.cos(rangle));
-			stateNumbers[i].setAttributeNS(null,"y",referenceCircle.cy + .85*referenceCircle.r*Math.sin(rangle));
-			}
+			//rangle = -Math.PI/2 + i*2*Math.PI/k_numStates;
+			//stateNumbers[i].setAttributeNS(null,"x",referenceCircle.cx + .85*referenceCircle.r*Math.cos(rangle));
+			//stateNumbers[i].setAttributeNS(null,"y",referenceCircle.cy + .85*referenceCircle.r*Math.sin(rangle));
+			//}
 		}
 
 
@@ -266,7 +266,7 @@ define(
     			bullseye.setAttributeNS(null, "stroke-width", 2);
 				svgelmt.appendChild(bullseye);
 
-
+                /*
  				// stateNumbers
  				for (var i=0;i<k_numStates;i++){
  					stateNumbers[i]=document.createElementNS(static_xmlns,"text");
@@ -279,6 +279,7 @@ define(
 					//stateNumbers[i].appendChild(stateNumbers[i].txt);
 					//svgelmt.appendChild(stateNumbers[i]);
  				}
+                */
 				
 
 				// triangle ----------
@@ -425,9 +426,9 @@ define(
 			}
 
          	me.setState=function(num){
-         		tri.angle=(num*2*Math.PI/k_numStates)*180/Math.PI;
-         		rotateSVG(tri, tri.angle, referenceCircle.cx, referenceCircle.cy);	
-         		me.tick(0);
+         		//tri.angle=(num*2*Math.PI/k_numStates)*180/Math.PI;
+         		//rotateSVG(tri, tri.angle, referenceCircle.cx, referenceCircle.cy);	
+         		//me.tick(0);
          	}
 
             me.init=function(){

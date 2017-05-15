@@ -1,0 +1,26 @@
+{
+  "name": "DistributedPlatform",
+  "version": "1.0.0",
+  "description": "1) Make sure jsaSound server is running where it will be referenced (locally, or at animatedsoundworks.com)",
+  "main": "distributedPlatformServer.js",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^1.2.0",
+    "ws": "^0.4.32"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lonce/DistributedPlatform.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lonce/DistributedPlatform/issues"
+  },
+  "homepage": "https://github.com/lonce/DistributedPlatform#readme"
+}

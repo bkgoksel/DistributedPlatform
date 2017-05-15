@@ -7,54 +7,69 @@ process.argv.forEach(function (val, index, array) {
 });
 if (process.argv.length < 3){
     console.log("Since you didn't specify a port number, we'll use: " + k_portnum)
-    console.log("To specify portnumber, use: node myserver portnum mode (production or dev)");
+    console.log("To specify portnumber, use: node myserver portnum mode");
     //process.exit(1);
 }
 k_portnum = process.argv[2] || k_portnum;
-const mode=process.argv[3] || "production";
+const mode=process.argv[3] || undefined;
 
 //--------------------------------------------------------------
 var fs = require('fs');
 var express = require("express");
 var app = express();
 
-if (mode=="production") {
-    console.log('using development mode');
-/*
-    var http = require('http')
-    var WebSocketServer = require('ws').Server;
-    var server = http.createServer(app);
-*/
-    var https = require('https');
-    var WebSocketServer = require('ws').Server
+switch(mode){  // run with https security certificates on remote server
+    case "production" :
+    case "sonicthings.org" :
 
-    var options = {
-      key: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/privkey.pem'),
-      cert: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/fullchain.pem'),
-      // requestCert: true,  // This requests a CLIENT cert - we don't want that.
-      rejectUnauthorized: false
-    };
+        console.log('using production mode');
+    /*
+        var http = require('http')
+        var WebSocketServer = require('ws').Server;
+        var server = http.createServer(app);
+    */
+        var https = require('https');
+        var WebSocketServer = require('ws').Server
 
-    var server = https.createServer(options, app);
+        var options = {
+          key: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/privkey.pem'),
+          cert: fs.readFileSync('/etc/letsencrypt/live/sonicthings.org/fullchain.pem'),
+          // requestCert: true,  // This requests a CLIENT cert - we don't want that.
+          rejectUnauthorized: false
+        };
 
+        var server = https.createServer(options, app);
 
-} else {
-    console.log('using development mode');
+        break;
 
-    var https = require('https');
-    var WebSocketServer = require('ws').Server
+    case "dev" :  // run with https security certificates locally for testing 
+    case "development" :
+    case "local" :
+        console.log('using development mode');
 
-    var options = {
-      key: fs.readFileSync('cert.key'),
-      cert: fs.readFileSync('cert.pem'),
-      requestCert: true,
-      rejectUnauthorized: false
-    };
+        var https = require('https');
+        var WebSocketServer = require('ws').Server
 
-    var server = https.createServer(options, app);
+        var options = {
+          key: fs.readFileSync('cert.key'),
+          cert: fs.readFileSync('cert.pem'),
+          requestCert: true,
+          rejectUnauthorized: false
+        };
 
-}
-    
+        var server = https.createServer(options, app);
+        break;
+
+    default:  // don't run a "secure server" at all
+
+        console.log('using non secure (http) server mode');
+
+        var http = require('http');
+        var WebSocketServer = require('ws').Server
+        var server = http.createServer(app);
+        break;
+    }
+
 var wss = new WebSocketServer({server: server});
 //-------------------------------------------------------------
 
@@ -223,22 +238,7 @@ function sendJSONmsg(ws, name, data, source) {
     ws.send(JSON.stringify({n: name, d: data, s:source}));
 }
 
-/*
-function receiveJSONmsg(data, flags) {
-    var obj;
-    try {
-        obj = JSON.parse(data);
-    } catch (e) {
-        return;
-    }
-    
-    if (!obj.hasOwnProperty('d') || !obj.hasOwnProperty('n') || callbacks[obj.n] === undefined)
-        return;
-    //console.log("object.d: " + object.d + ", object.n:"+ object.n);
 
-    callbacks[obj.n].call(this, obj.d);
-}
-*/
 
 function receiveJSONmsg(data, flags) {
     //console.log("RECEIVE");

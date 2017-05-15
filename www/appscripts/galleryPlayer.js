@@ -1,8 +1,8 @@
 define(
-    ["config", "soundLoader", "../utils/utils"],
+    ["config", "../utils/soundLoader", "../utils/utils"],
     function (config, soundLoader, utils) {
 		var msgbox = document.getElementById("msg");
-		var mvt = config.mvt;
+
 		var m_currentMvt=-1;
 
 		var m_soundsLoaded=false;
@@ -71,9 +71,6 @@ define(
 
 			snds[sm.metaDrone].setParam("Number of Generators", 4-Math.min(3, i_roles));
 
-			if (m_currentMvt === mvt.GRANNYVOICE){
-					snds[sm.grannyvoice].setRole(m_role, m_roles);
-				}
 		}
 
 		// for slork

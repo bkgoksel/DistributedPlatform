@@ -16,17 +16,6 @@ define(
 		exports.resourcesPath = "https://animatedsoundworks.com";
 		//exports.resourcesPath = "http://"+window.document.location.hostname + ":8001/";
 
-		
-    	exports.mvt = {
-    			"METADRONE": 0,
-    			"RISSET": 1,
-    			"THUNDER": 2,
-    			"SWING": 3,
-    			"GRANNYVOICE" : 4,
-    			"PEEPER" : 5
-    		};
-
-
 		return exports;
 });
 

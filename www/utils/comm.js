@@ -9,7 +9,8 @@ define(
 
 
 			var host;
-			if ((window.document.location.hostname).includes("sonicthings.org")){
+			//if ((window.document.location.hostname).includes("sonicthings.org")){
+			if (true){
 				host="sonicthings.org:9999";//+window.document.location.hostname;
 			} else {
 				host="mockserver.com:9999"

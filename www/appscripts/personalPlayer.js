@@ -1,8 +1,8 @@
 define(
-    ["config", "soundLoader", "../utils/utils", "../utils/phaseTrigger"],
+    ["config", "../utils/soundLoader", "../utils/utils", "../utils/phaseTrigger"],
     function (config, soundLoader, utils, phaseTrigger) {
 		var msgbox = document.getElementById("msg");
-		var mvt = config.mvt;
+		
 		var m_currentMvt=-1;
 
 		var m_soundsLoaded=false;

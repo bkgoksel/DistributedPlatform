@@ -16,21 +16,12 @@ require.config({
 
 //			if ((window.document.location.hostname).includes("animatedsoundworks.com")){
 			var sndhost;
-			if ((window.document.location.hostname).includes("sonicthings.org")){
+			//if ((window.document.location.hostname).includes("sonicthings.org")){
+			if (true){
 				sndhost="https://animatedsoundworks.com";//+window.document.location.hostname;
 			} else {
 				sndhost="https://mockserver.com:8001"
 			}
-				//host="https://animatedsoundworks.com"
-//			} else {
-//				var host = "http://"+window.document.location.hostname + ":8001";
-//			}
-
-			// jsaSound server is hardcoded to port 8001 (on the same server as jsaBard - or from animatedsoundworks)
-				//LOCAL var host = "http://"+window.document.location.hostname + ":8001";
-				//var host = "http://"+window.document.location.hostname + ":8001";
-				//var host = "http://"+"172.23.68.214" + ":8001";
-				//alert("will look for sounds served from " + host);
 			return (sndhost );
 		})(),
 		"jquery": "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min"

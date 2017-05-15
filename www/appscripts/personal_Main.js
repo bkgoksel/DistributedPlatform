@@ -8,7 +8,8 @@ require.config({
 			}
 				// hardcoded to read sounds served from jsaSound listening on port 8001 (on the same server as the AnticipatoryScore server is running)
 			var sndhost;
-			if ((window.document.location.hostname).includes("sonicthings.org")){
+			//if ((window.document.location.hostname).includes("sonicthings.org")){
+			if (true){
 				sndhost="https://animatedsoundworks.com";//+window.document.location.hostname;
 			} else {
 				sndhost="https://mockserver.com:8001"
@@ -21,7 +22,7 @@ require.config({
 	}
 });
 require(
-	["require",  "voiceActivation", "../utils/comm", "../utils/utils",  "config", "personalConfig", "personalDisplay", "player_personal",  "polyfill"],
+	["require",  "../utils/voiceActivation", "../utils/comm", "../utils/utils",  "config", "personalConfig", "personalDisplay", "personalPlayer",  "../utils/polyfill"],
 
 	function (require,  va, commFactory, utils,  config, personalConfig, personalDisplay,  player) {
 

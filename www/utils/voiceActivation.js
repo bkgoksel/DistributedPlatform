@@ -1,5 +1,5 @@
 define(
-    ["config", "meter"],
+    ["config", "../utils/meter"],
     function (config) {
 
         var msgbox = document.getElementById("msg");
